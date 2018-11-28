@@ -1,0 +1,29 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif" style=""><span style="color: rgb(0, 0, 0);">Dear&nbsp;</span><font style="">{!Contact.Name},</font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif">Thank you for contacting the
+Department of Revenue.</font><span style="font-family: Arial, sans-serif; font-size: 12pt;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif"><span style="color: rgb(0, 0, 0);">This email is a confirmation
+that we received your message about&nbsp;</span>{!Case.Subject}<font style="">. </font><span style="color: rgb(0, 0, 0);">&nbsp;</span><font style="color: rgb(0, 0, 0);">You will
+receive a response from a representative within 2-3 business days. <o:p></o:p></font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">For your reference, your case
+number is the following&nbsp;{!Case.CaseNumber}</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="line-height: 107%;"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="line-height: 107%;"><font face="Arial, sans-serif">Thank
+you,<br></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="line-height: 107%;"><span style="font-family: Arial, sans-serif; background-color: rgb(255, 255, 255);">Department of Revenue</span></span></p>
+
+<font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br>
+
+</font><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 1pt;"><font face="Arial, sans-serif">Follow us on: <b style="mso-bidi-font-weight:normal"><span style="mso-spacerun:yes">&nbsp;</span></b><a name="_Hlk509912526"></a><a href="http://www.facebook.com/philarevenue"><span style="mso-bookmark:_Hlk509912526">Facebook</span><span style="mso-bookmark:_Hlk509912526"></span></a><span style="mso-bookmark:_Hlk509912526"><span style="color:#1F497D">&nbsp;&nbsp;<span style="mso-spacerun:yes">&nbsp; </span></span></span><span style="mso-bookmark:_Hlk509912526"></span><a href="https://twitter.com/PhilaRevenue"><span style="mso-bookmark:_Hlk509912526">Twitter</span></a><span style="mso-bookmark:_Hlk509912526"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span><a href="https://www.youtube.com/channel/UCXwGfs901HF7nAZyR3NTOsw"><span style="mso-bookmark:_Hlk509912526">YouTube</span></a><span style="mso-bookmark:_Hlk509912526"></span><b style="mso-bidi-font-weight:normal"><o:p></o:p></b></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 1pt;"><font face="Arial, sans-serif">Let us know how we’re doing! <a href="https://www.surveymonkey.com/r/6SF5W38">Take our 30 second survey</a></font></p><p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style=""><br></font></p><p class="MsoPlainText" style=""><font face="Arial, sans-serif" style="">This email may contain confidential and/or privileged information.&nbsp; If you are not the intended recipient, please notify the sender and delete this e-mail immediately.&nbsp; Any unauthorized copying, disclosure or distribution of material in this e-mail is strictly forbidden.</font></p><p class="MsoPlainText" style=""><font face="Arial, sans-serif" style=""><br></font></p><p class="MsoPlainText" style=""><span style="font-family: Arial, sans-serif;">{!Case.Thread_Id}</span></p>]]></td>
+</tr>
+</table>

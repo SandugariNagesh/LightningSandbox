@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Hazardous Email Alert for Alley Light Outage</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: HazardoursServiceRequest-Alley Light Outage</name>
+    <style>none</style>
+    <subject>Hazardous Alley Light Outage Reported at {!Case.Street__c}, Streets ID# {!Case.Streets_Request_ID__c}, Type {!Case.Problem_Type__c}</subject>
+    <type>text</type>
+</EmailTemplate>

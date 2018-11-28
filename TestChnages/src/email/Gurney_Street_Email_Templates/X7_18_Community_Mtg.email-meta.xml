@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>7/18 Community Mtg</name>
+    <style>freeForm</style>
+    <subject>Reminder: El Barrio es Nuestro Community Meeting</subject>
+    <textOnly>Dear Community Partners,
+
+
+Below you will find a brief questionnaire regarding your attendance to our next community meeting. Please take a few seconds to fill it out.
+
+
+
+Gurney Street beautification project community meeting
+
+
+Gurney Street y proyectos  de embellecimiento
+
+
+
+We look forward to your participation.</textOnly>
+    <type>html</type>
+</EmailTemplate>

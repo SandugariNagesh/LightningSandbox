@@ -1,0 +1,51 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;"><span style="background-color: white; font-size: 12pt;"><font face="Arial,Sans-Serif">Dear
+Customer,&nbsp;</font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;">
+<font face="Arial,Sans-Serif"><br></font>
+<span style="background:white"><font face="Arial,Sans-Serif">Thank you for submitting your request. Please be
+advised that Case #{!Case.CaseNumber} regarding "{!Case.RecordType}"
+has been closed.&nbsp;</font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;"><span style="font-size: 12pt; background: white;"><font face="Arial,Sans-Serif">&nbsp;</font></span></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="background: white; color: rgb(0, 0, 0);"><font face="Arial,Sans-Serif">For
+additional information related to the status of this case you may contact us
+via telephone by dialing 3-1-1 or 215-686-8686 or email at&nbsp;</font></span><span style="color: rgb(0, 0, 0);"><a href="mailto:Philly311@phila.gov"><span style="color:black"><font face="Arial,Sans-Serif">Philly311@phila.gov</font></span></a><span style="background:white"><font face="Arial,Sans-Serif">.&nbsp;</font></span><br>
+<font face="Arial,Sans-Serif"></font><br></span></p><div style="color: rgb(0, 0, 0);"><font face="Arial,Sans-Serif">
+Regards,</font></div><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;"><font face="Arial,Sans-Serif">Philly311</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;"><span style="font-size: 12pt; background: white;"><font face="Arial,Sans-Serif">{!Organization.Name}</font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;"><font face="Arial,Sans-Serif">Customer Support</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial,Sans-Serif"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="line-height: 115%; background-color: white;"><b><font face="Arial,Sans-Serif">Take 30 seconds to let us know how we are doing:</font></b></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="line-height: 115%; background-color: white;"><b><font face="Arial,Sans-Serif"><br></font></b></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><a href="http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id}">http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id}</a><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial,Sans-Serif"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;"><font face="Arial,Sans-Serif">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: normal; margin-bottom: 0pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="background: white; line-height: 115%;"><font face="Arial,Sans-Serif">{!Case.Thread_Id}</font></span></p>]]></td>
+</tr>
+</table>

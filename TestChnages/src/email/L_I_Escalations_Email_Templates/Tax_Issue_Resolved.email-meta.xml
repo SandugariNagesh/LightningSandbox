@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>LI_Escalation_Logo_Letter_Head</letterhead>
+    <name>Tax Issue Resolved</name>
+    <style>freeForm</style>
+    <subject>Tax Issue Resolved</subject>
+    <textOnly>Dear License Holder,
+
+The tax issue has been resolved and you can proceed with the application.  Please see the attached brochure to assist you in the online renewal. As noted in the brochure, you must first create an online account and associate the commercial activity license. The following information will be required:
+Activity License #: XXXX
+City of Philadelphia Tax Account #:  XXXX
+Social Security Number (SSN) OR Employer Identification Number (EIN): XXXX
+
+Alternatively, you can visit our eCLIPSE Registrations counter located on the MSB Concourse, between the hours of 8 am and 3:30 pm. We apologize for the inconvenience and thank you for your patience.
+
+Please reply to this email if you experience any further issues related to this. We appreciate your patience and thank you for your investment in the City of Philadelphia.
+
+Sincerely,
+
+Contact Center Specialist Supervisor/
+
+Liaison for L&amp;I</textOnly>
+    <type>html</type>
+</EmailTemplate>

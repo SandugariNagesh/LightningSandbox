@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Automated Response When Case Is CLOSED</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Philly311_Logo_Letter_Head</letterhead>
+    <name>Case Closed E-mail Response</name>
+    <style>freeForm</style>
+    <subject>Case #{!Case.CaseNumber} located at {!Case.Street__c}, {!Case.Street__c} is Closed.</subject>
+    <textOnly>Dear Customer,
+
+Please be advised that Case # {!Case.CaseNumber} regarding {!Case.RecordType} located at {!Case.Street__c} has been Closed by the {!Case.Department__c}.
+
+The last case comment on your case was: {!Case.Last_Case_Comment}
+
+If you feel this closure was in error and a problem still exists please contact 311 by replying to this email, dialing 3-1-1, or for outside of Philadelphia please dial 215-686-8686.
+
+Regards,
+
+Philly311 Customer Support
+
+Rate Us From Here:
+
+http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id} 
+
+Download our Mobile Application here: 
+
+IOS: https://itunes.apple.com/us/app/philly-311/id533292779?mt=8 
+Android https: //play.google.com/store/apps/details?id=com.publicstuff.philadelphia&amp;hl=en 
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

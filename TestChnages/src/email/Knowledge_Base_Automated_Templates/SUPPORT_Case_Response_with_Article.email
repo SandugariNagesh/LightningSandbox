@@ -1,0 +1,10 @@
+Dear {!Contact.FirstName}, 
+
+Thank you for contacting the City of Philadelphia's 311 Contact Center. The information you requested is attached for your review. 
+
+{!Case.Articles_as_PDFs} 
+
+Regards, 
+
+{!Organization.Name} 
+Customer Support

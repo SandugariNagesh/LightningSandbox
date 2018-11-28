@@ -1,0 +1,16 @@
+Dear Customer, 
+
+Thank you for submitting your request through the City of Philadelphia's 311 Contact Center. A case has been created for {!Case.Service_Request_Type__c} and  SLA is : {!Case.SLA__c} ,assigned Case # {!Case.CaseNumber}. Your request will be forwarded to the appropriate Department. You may check the status of your request using the case number provided via telephone by dialing 3-1-1 or 215-686-8686 or email at Philly311@phila.gov. 
+
+
+Thank you, 
+
+Philly311
+Customer Support
+
+Take 30 seconds to let us know how we are doing;  
+
+http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&cId={!Contact.Id}&caId={!Case.Id}
+
+Mission: 
+Is to provide direct access to city government information and services while delivering world-class customer service.

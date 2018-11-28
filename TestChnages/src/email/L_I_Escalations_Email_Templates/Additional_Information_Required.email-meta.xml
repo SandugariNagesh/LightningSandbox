@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>LI_Escalation_Logo_Letter_Head</letterhead>
+    <name>311 Additional Information Required</name>
+    <style>freeForm</style>
+    <subject>Additional Information Required</subject>
+    <textOnly>Dear License Holder,
+
+Thank you for your inquiry. We will need some additional information in order to assist you. Please provide the following information:
+
+Once we have received this information we will be able to investigate further to help resolve any issues with your account. We appreciate your patience and thank you for your investment in the City of Philadelphia.
+
+Sincerely,
+
+Contact Center Specialist Supervisor/
+
+Liaison for L&amp;I</textOnly>
+    <type>html</type>
+</EmailTemplate>

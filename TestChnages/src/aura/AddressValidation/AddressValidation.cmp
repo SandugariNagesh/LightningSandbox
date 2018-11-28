@@ -1,0 +1,29 @@
+<aura:component controller="validatePhillyAddressController" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"  access="global" >
+    <aura:attribute name="enteredAddressResponse" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordTypeName" type="String" />
+    <aura:attribute name="mapURL" type="String" />
+    <aura:attribute name="Units" type="String[]" default=""/>
+    
+    <center>
+        <div style="width:50%;margin-top:5%">
+            
+            <ui:inputText value="" aura:id="username"  label="Enter Address or Intersection of Problem Issue" class="form-control"  keyup="{!c.searchEvents}" />
+            <br/>
+            <div class='multiAdd' aura:id="changeIt">
+                <h1>Your search had multiple results.</h1>
+                
+                <ui:inputSelect aura:id="levels" label="Please choose one of the following addresses:" change="{!c.onSelectChange}">
+                    <aura:iteration items="{!v.Units}" var="level">
+                        <ui:inputSelectOption text="{!level}" label="{!level}"/>
+                    </aura:iteration>
+                </ui:inputSelect>
+                <br/>
+            </div>
+            <lightning:button variant="brand" label="Submit" onclick="{!c.handleClick }" class="btn btn-primary"  />
+            <br/>
+            
+            <lightning:formattedText value="{!v.enteredAddressResponse}" class="invalidAddressMsg"/>
+        </div>
+    </center>
+</aura:component>

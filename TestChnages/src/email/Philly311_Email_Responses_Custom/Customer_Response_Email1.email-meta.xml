@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Used when responding to a survey</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Customer Response Email1</name>
+    <style>freeForm</style>
+    <subject>{!Organization.Name} Philly311 Case #{!Case.CaseNumber}, {!Case.RecordType} Case Closed.</subject>
+    <textOnly>Dear Customer, 
+
+Thank you for submitting your request. Please be advised that Case #{!Case.CaseNumber} regarding &quot;{!Case.RecordType}&quot; has been closed.
+
+For additional information related to the status of this case you may contact us via telephone by dialing 3-1-1 or 215-686-8686 or email at Philly311@phila.gov.
+
+Regards,
+Philly311
+{!Organization.Name}
+Customer Support
+
+Take 30 seconds to let us know how we are doing:
+http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id}
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

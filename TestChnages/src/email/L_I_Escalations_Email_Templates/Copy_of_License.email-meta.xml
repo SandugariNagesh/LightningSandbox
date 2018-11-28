@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>LI_Escalation_Logo_Letter_Head</letterhead>
+    <name>Copy of License</name>
+    <style>freeForm</style>
+    <subject>Copy of License</subject>
+    <textOnly>Dear License Holder,
+
+Thank you for your inquiry. A copy of the requested license is attached. We are pleased to announce that you may now obtain a new license or renew an existing license on-line.
+
+Please see the attached brochure for details on creating an on-line account. Thank you for your investment in the City of Philadelphia.
+
+Sincerely,
+
+Contact Center Specialist Supervisor/
+
+Liaison for L&amp;I</textOnly>
+    <type>html</type>
+</EmailTemplate>

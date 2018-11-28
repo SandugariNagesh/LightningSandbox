@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Hazardous Email Alert for Inlet Cleaning Service Request Type</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: HazardoursInletServiceRequest</name>
+    <style>none</style>
+    <subject>Your Case {!Case.CaseNumber}, {!Case.Service_Request_Type__c} has Been Updated</subject>
+    <type>text</type>
+</EmailTemplate>

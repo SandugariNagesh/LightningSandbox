@@ -1,0 +1,158 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                controller="CustomCaseController" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="showLoadingSpinner" type="boolean" default="false" />
+    
+    <aura:attribute name="CaseObj" type="Case" default="{'sobjectType':'Case'}"/>
+    
+    <aura:attribute name="message" type="String"/>
+    
+    <aura:attribute name="Address" type="String"/>
+    
+    <aura:attribute name="parentId" type="Id" default="a0029000002qwdAAAQ" />
+    
+    
+    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+    
+    <aura:attribute name="FileList" type="Object"/>
+    
+    
+    <!--Error Messages -->
+    
+    <aura:attribute name="errUnitNumber" type="String" default=""/>
+    
+    <aura:attribute name="errAdultPresenttoProvideAccesstoInspe" type="String" default=""/>
+    
+    <aura:attribute name="errResidentialPropertyType" type="String" default=""/>
+    
+    
+    <!--End of Error Messages-->
+    
+    
+    <div style="background-color:#8e8e8e; padding:2px; margin:11px">
+        <h3 style="color:white; padding:2px"><center>Maintenance Residential or Commercial</center></h3>
+    </div>
+    <center><div class="errMsg"><ui:outputText value="{!v.message}"/></div></center>
+    <div class="slds-form slds-is-editing" role="list">
+        <div class="slds-grid mdp forcePageBlockSectionRow">
+            <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+                <label class="LSELabel">Exterior or Interior: </label>
+                <force:inputField value="{!v.CaseObj.Exterior_or_Interior__c}" />
+            </div>
+            <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+                <label class="LSELabel">Residential Property Type: </label>
+                <force:inputField value="{!v.CaseObj.Residential_Property_Type__c}"  />
+                <ui:outputText value="{!v.errResidentialPropertyType}" class="CustErrorMsg"/>
+                <br />
+            </div>
+        </div>
+        <div class="slds-grid mdp forcePageBlockSectionRow">
+            <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+                <label class="LSELabel">Unit Number : </label>
+                <lightning:input value="{!v.CaseObj.Unit_Number__c}"  aura:id="UnitNumber" />
+                <ui:outputText value="{!v.errUnitNumber}" class="CustErrorMsg"/>
+                <br />
+            </div>
+            <div aura:id="changeIt" class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+                <label class="LSELabel">Problem Location at House or Unit: </label>
+                <force:inputField value="{!v.CaseObj.Problem_Location_at_House_or_Unit__c}" required="true"/>
+                <br />
+            </div>
+            
+            
+            
+        </div>
+    </div>
+    <div class="slds-grid mdp forcePageBlockSectionRow">
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Provide Access to Inspector : </label><br/>
+            <force:inputField value="{!v.CaseObj.Adult_Present_to_Provide_Access_to_Inspe__c}"  />
+            <ui:outputText value="{!v.errAdultPresenttoProvideAccesstoInspe}" class="CustErrorMsg"/>
+            <br />
+        </div>
+        
+        
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Is Customer the Property Owner : </label><br/>
+            <force:inputField value="{!v.CaseObj.Is_Customer_the_Property_Owner__c}"  />
+            <br />
+        </div>
+        
+    </div>
+    
+    <div class="slds-grid mdp forcePageBlockSectionRow">
+        
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit" style="display:none">
+            <label class="LSELabel">Residential or Commerical : </label><br/>
+            <lightning:input value="{!v.CaseObj.Residential_or_Commerical__c}" aura:id="ResidentialOrCommerical"  style="display:none"/>
+            <br />
+        </div>
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+         
+            <br />
+        </div>
+    </div>
+    
+    
+    <div class="slds-grid mdp forcePageBlockSectionRow">
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Name : </label><br/>
+            <force:inputField value="{!v.CaseObj.Customer_Name__c}"  />
+            <br />
+        </div>
+        
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Email : </label><br/>
+            <force:inputField value="{!v.CaseObj.Customer_Email__c}" aura:id="EMail" />
+            <br />
+        </div>
+    </div>
+    <div class="slds-grid mdp forcePageBlockSectionRow">
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Phone : </label><br/>
+            <force:inputField value="{!v.CaseObj.Customer_Phone__c}"  />
+            <br />
+        </div>
+        
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Description : </label><br/>
+            <force:inputField value="{!v.CaseObj.Description}"  />
+            <br />
+        </div>
+    </div>
+    <div class="slds-grid mdp forcePageBlockSectionRow">
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel">Entered Address : </label><br/>
+            <lightning:input value="{!v.Address}" aura:id="enterAddress" />
+            <br />
+        </div>
+        <div class="slds-has-flexi-truncate slds-p-horizontal_medium pageBlockItemEditWithTooltip mdp forcePageBlockItem forcePageBlockItemEdit">
+            <label class="LSELabel"></label><br/>
+            
+            <br />
+        </div>
+    </div>
+    <br />
+    
+    
+    <lightning:input aura:id="fileId" onchange="{!c.handleFilesChange}" type="file" name="file" label="" title="Upload Picture" multiple="false"/>
+    <div class="slds-text-body_small slds-text-color_error">{!v.fileName} </div>
+    
+    
+    <aura:if isTrue="{!v.showLoadingSpinner}">
+        <div class="slds-text-body_small slds-text-color_error">Uploading... 
+            <img src="/auraFW/resources/aura/images/spinner.gif" class="spinner-img" alt="Loading"/>'
+        </div>
+    </aura:if>
+    
+    <br/>
+    
+    <br/>
+    
+    <div class="cus_button">
+        <lightning:button onclick="{!c.fLIUI_Button_Clicked}" variant="brand" label="Submit" /> 
+    </div>
+    
+</aura:component>

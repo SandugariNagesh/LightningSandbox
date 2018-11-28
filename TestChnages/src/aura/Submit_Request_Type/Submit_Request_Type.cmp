@@ -1,0 +1,40 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" 
+                controller="SubmitRequestTypeOptionsController" >
+    
+    <aura:attribute name="listOfRecordTypes" type="recordType[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:dependency resource="markup://force:*" type="EVENT"/>
+    <div class="forceCommunityCreateRecordButton">
+        <ui:menu >
+            
+            <ui:menuTriggerLink aura:id="trigger" class="submitMenu" >
+                Submit Request <img class="imgClass" src="{!$Resource.DownArrow}" />
+            </ui:menuTriggerLink> 
+            <ui:menuList class="actionMenu" aura:id="actionMenu">
+                
+                <aura:iteration items="{!v.listOfRecordTypes}" var="rec">
+                    <ui:actionMenuItem aura:id="item1" label="{!rec.Name}"  click="{!c.doSomething}" ></ui:actionMenuItem> <span style="display:inline-block; color:#000; width:20px;float:left">
+                  <!--<img class="imgClass" src="{!$Resource.InfoIcon}" >
+                       
+
+
+
+                       
+                    </img>--> <lightning:helptext content="{!rec.Description}" />
+                   
+                    </span>
+                    
+                </aura:iteration>
+                
+            </ui:menuList>
+            
+            
+        </ui:menu>
+        
+        
+        
+    </div>  
+    
+   
+</aura:component>

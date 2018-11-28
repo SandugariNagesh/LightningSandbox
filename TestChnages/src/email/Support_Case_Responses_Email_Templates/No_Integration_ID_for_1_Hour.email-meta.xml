@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This template is used with the notification that a case from (Water, LI, and Streets) are missing ID&apos;s after one hour that are not from Mobile/Web</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>No Integration ID for 1 Hour</name>
+    <style>none</style>
+    <subject>{!Case.Department__c} {!Case.CaseNumber} Missing Int ID</subject>
+    <type>text</type>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>L&amp;I Escalations Email Templates</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <group>License_Inspections_Department_Users</group>
+        <group>SFDC_Administrator</group>
+    </sharedTo>
+</EmailFolder>

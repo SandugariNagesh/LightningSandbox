@@ -1,0 +1,28 @@
+/* This Class is used by Trigger on Case Object to update 
+ * the Case Owner according to the Case Assignment Rule.
+ * Updated the code for Support ticket #00005373
+ */
+
+public class CaseAssignmentProcessor {
+     
+     public static void processCases(Set<Id> id) {
+          List<Case> casesToUpdate = new List<Case>();
+          
+            for(Case tempObj : [Select id,CaseNumber, Department__c, Centerline_2272x__c, Centerline_2272y__c, Owner.Name from Case where id IN :id])    {                
+                     
+                //Assignment Rule
+                Database.DMLOptions dmo = new Database.DMLOptions();
+                dmo.assignmentRuleHeader.useDefaultRule= true; 
+                tempObj.setOptions(dmo);
+                casesToUpdate.add(tempObj);                 
+           }
+          try    {
+              CaseFieldUpdate.inFutureContext = true;
+              Database.upsert(casesToUpdate);
+          }
+          catch (DMLException ex)    {
+              System.debug('Error Occured: ' + ex.getMessage());
+          }    
+     }
+ 
+}

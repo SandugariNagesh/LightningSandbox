@@ -1,0 +1,16 @@
+The following case is being escalated to you for follow up action. 
+
+Subject: {!Case.Subject}
+
+Case: {!Case.CaseNumber}
+
+Owner: {!Case.OwnerFullName} 
+
+Click on the respective link to access the case:
+Internal Users: {!Case.Link} 
+Partner Users: https://philly.force.com/internal/{!Case.Id}
+
+Regards, 
+
+Philly311
+Customer Support

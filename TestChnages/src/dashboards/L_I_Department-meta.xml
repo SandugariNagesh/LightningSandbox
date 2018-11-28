@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DashboardFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>tomeka.seigler@phila.gov</sharedTo>
+        <sharedToType>User</sharedToType>
+    </folderShares>
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>L_I_Head</sharedTo>
+        <sharedToType>Role</sharedToType>
+    </folderShares>
+    <name>L&amp;I Department</name>
+</DashboardFolder>

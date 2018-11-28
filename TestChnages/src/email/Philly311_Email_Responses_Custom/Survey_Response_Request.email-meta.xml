@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Survey response template back to customer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Survey Response</name>
+    <style>freeForm</style>
+    <subject>Philly 311 Reply to Your Survey Related to {!Case.RecordType}, Case # {!Case.CaseNumber}</subject>
+    <textOnly>Dear Customer,
+
+Thank you for taking the time to participate in our survey. We truly value the information you have provided. 
+
+Regards,
+Philly311
+Customer Support
+
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

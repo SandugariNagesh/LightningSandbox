@@ -1,0 +1,899 @@
+<!-- This is a visual force page that is used for creating and editing a case -->
+
+<apex:page standardcontroller="Case" extensions="X311CaseEditClrExt" lightningStylesheets="true">
+  <apex:pageMessages id="errorMsg" />
+	<apex:outputPanel rendered="{! !IsClassic}">
+    	<apex:slds />	  
+    </apex:outputPanel>
+    
+     <apex:includeScript value="/support/console/44.0/integration.js"/> 
+     <apex:includeScript value="{!URLFOR($Resource.XedeDefaultAssets, 'js/jquery-1.10.2.min.js')}"/>
+     <apex:includeScript value="{!$Resource.Jquery_alert}" />
+     <apex:stylesheet value="{!$Resource.Alert_Css}" />  
+     <apex:includeScript value="/soap/ajax/25.0/connection.js"/>
+     <apex:includeScript value="/soap/ajax/25.0/apex.js"/>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" >
+     var j$ = jQuery.noConflict();
+    </script>
+      
+     <script language="javascript">
+         var j$ = jQuery.noConflict();
+         $(function() {
+      <!-- Added By Raju for Contact Lookup--- Start --->    
+         //alert('test');
+                  // javascript:top.window.opener.lookupPick2('','j_id0:mainForm:edit:pbs:Account_lkid','j_id0:mainForm:edit:pbs:Account','0032F000006btA1QAI','test',false)
+
+//document.getElementById("j_id0:mainForm:edit:pbs:Account_lkid").value = "Johnny Bravo";
+//j$("[id*='Account_lkid']").val('0032F000006btA1QAI'); 
+          
+           <!-- Added By Raju for Contact Lookup--- END--->
+          
+          
+            var ccd='false';
+            if(j$("[id $='stat']").val()!= 'Closed')
+            {
+                j$('select.RemoveNone1 option[value=]').remove();
+                j$('select.RemoveNone1 option[value=Closed]').remove();
+            }
+            else
+            j$('select.RemoveNone1 option[value=]').remove();
+                
+                j$('select.RemoveNone option[value=]').html('');               
+                 
+                j$('select.RemoveNone2 option[value=]').remove();
+                j$('select.RemoveNone2').append(j$('<option></option>').val('').html(''));
+                j$('select.RemoveNone2').val('Yes');
+                
+                if(j$("[id $='language']").val()== null || j$("[id $='language']").val() == '')
+                  lang123();
+                
+                if(j$("[id $='otherlang']").val()== null || j$("[id $='otherlang']").val() == '')
+                   language();                      
+                
+                stattusup();   
+         });
+         
+         //changes added for Donation bin #10660908 START
+         j$(function() {
+         
+           mainflow();
+         });
+    
+         //changes added for Donation bin #10660908 END
+         // Mainflow function is created for running initial condition again when the validation fails in a service request(All SRs)
+           function mainflow(){ 
+         
+            //Set the current tabs title
+            if (sforce.console.isInConsole())
+                sforce.console.setTabTitle('{!Case.CaseNumber}'=='' ? 'New Service Request' : '{!Case.CaseNumber}');
+                
+            setTimeout(X311CaseEdit.loadScript, 100);
+            
+            /* support ticket fix #09505836 start
+            // for limiting the character in Description field
+            j$("[id$='description']").keydown ( function (e) {    
+                //list of functional/control keys that you want to allow always
+                var keys = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 145];
+                var val = j$("[id*='description']").val();   
+                 if( j$.inArray(e.keyCode, keys) == -1 && !event.ctrlKey && !event.shiftKey ) {     
+                    if (checkMaxLength (val)) {
+                        e.preventDefault();
+                        e.stopPropagation();                        
+                    }
+                }
+            });
+             
+            function checkMaxLength (text) {
+                return (text.length >= 1000);
+            }
+            
+            j$("[id$='description']").bind('paste',function(e){
+                    var data = e.originalEvent.clipboardData.getData('Text');
+                    var val;
+                    if(data.length > 11) {
+                        setTimeout(function(e) {
+                            val = data.substring(0,1000);  
+                            j$("[id*='description']").val(val);  
+                        }, 0);
+                    }
+            });
+            Support ticket fix #09505836 end */
+                
+            j$('[id*=powerBlock]').prop('disabled', 'disabled');
+            j$('[id*=othriss]').prop('disabled', 'disabled');            
+            j$('[id*=spo]').prop('disabled', 'disabled');
+             
+            
+            // for workflow
+            var pageName = "{!$CurrentPage.Name}"; 
+            if(pageName == 'x311caseeditfd01fire_ems')   {   
+                if(j$("[id $='names']").val() == null || j$("[id $='names']").val() == '')           
+                    violationFire();
+                if(j$("[id $='idNumber']").val() == null || j$("[id $='idNumber']").val() == '')               
+                    violationFire1();
+                if(j$("[id $='WCInfo']").val() == null || j$("[id $='WCInfo']").val() == '')               
+                    violationFire2();
+                if(j$("[id $='inLocKnown']").val() == null || j$("[id $='inLocKnown']").val() == '')               
+                    violationFire3();
+            }
+            else if(pageName == 'x311caseeditsrli19licenseresidential') {
+                
+                AptNum();            
+            }else if(pageName == 'x311caseeditsrst06alley_light_outage') {
+                   ALL5();
+                    
+            } else if(pageName == 'x311caseeditsrli22noheat') {
+                   Unit(); 
+                   e15();
+            } else if(pageName == 'x311caseeditsrli21maintrescomm') {
+                  
+                   dep1(); 
+                   dep2(); 
+                   e19();
+                   
+                   
+            } else if(pageName == 'x311caseeditsrli27vacanthouseorcom') {
+                   vhc4();
+                   
+            }  else if(pageName == 'x311caseeditsrst25trafsig') {
+                   TrafSig8();
+                   
+                   
+            } else if(pageName == 'x311caseeditfd02smokedetector') {
+                  
+                 smoke5(this);
+            } else if(pageName == 'x311caseeditst19sanitationdumpster') {
+                  
+                   violation(); 
+            } else if(pageName == 'x311caseeditsrpd02policecomp') {
+                  
+                   dependency3();
+            } else if(pageName == 'x311caseeditsrli16fire1') {
+                  
+                  rental();
+                  e2();
+            } else if(pageName == 'x311caseeditsrli28zoningbusiness') {
+                  
+                zonb123();
+               
+            } else if(pageName == 'x311caseeditsrli17infestation') {
+                  
+                 rental();
+                 e9();
+            } 
+            else if(pageName == 'x311caseeditpd01ab2') {
+               abandon5();
+            } 
+            
+            else if(pageName == 'x311caseeditst10deadanimal') {
+               e3();
+            }
+            else if(pageName == 'x311caseeditns01graffiti') {
+               e4();
+               e5();
+            } 
+             else if(pageName == 'x311caseeditsrpr01parksandrec') {
+               e7();
+               e8();
+            } else if(pageName == 'x311caseeditsrst08compaint') {
+               e12();
+               e13();
+            } 
+            else if(pageName == 'x311caseeditsrli03buildingdangerous') {
+               e14();
+              
+            } 
+            else if(pageName == 'x311caseeditcstf') {
+               e16();
+              
+            } 
+            
+             else if(pageName == 'x311caseeditsrst16otherstreets') {
+               e17();
+                e18();
+              
+            }
+             else if(pageName == 'x311caseeditst03rbcoll') {
+              e20();
+              
+            }
+            else if(pageName == 'x311caseeditsrst01streetdefect') {
+              e21();
+              e22();
+              std();
+            }
+            else if(pageName == 'x311caseeditsrli02building_construction') {
+              e23();
+              e24();
+               e25();
+              e26();
+              
+            }
+            
+            else if(pageName == 'x311caseeditsrst14manhole') {
+              e28();
+              
+            }
+            
+            else if(pageName == 'x311caseeditpr08streettrees') {
+             e30();
+              enable();
+              
+            }
+             else if(pageName == 'x311caseeditsrst24trafficother') {
+             test2();
+              
+            }
+            
+           // Fix for support ticket number 08955857  Start
+            j$("[id $='savingButton1']").hide();
+            
+           // Fix for support ticket number 08955857  End 
+            
+            if('{!$Profile.Name}' == '311 Contact Center Agents') {
+              j$('[id*=TenDayNoticeGiven]').prop('disabled', 'disabled');   
+            }
+            
+            if(sforce.console.isInConsole() != true) {
+              j$('[id*=FlowTableData]').hide();  
+              j$('[id*=KBdata]').hide();  
+              j$('[id*=NonFlowData]').css('width','100%');  
+              j$('[id*=divNonFlowData]').css('width','100%');  
+              
+            }
+            
+            if(j$('[id*=plate]').val() == '')  {
+                   j$('[id*=lic]').val('None');
+            }                                  
+                        
+            j$(document).keydown(function(e) {
+                var element = e.target.nodeName;
+                if (element != 'INPUT' && element != 'TEXTAREA') {
+                    if (e.keyCode === 8) {
+                        return false;
+                    }
+                }
+            });
+            
+            // A javascript function to close the tab when user cancels -->
+            j$("input[value=Cancel]").click(function(event) {
+                if (sforce.console.isInConsole() == false)
+                    return
+                    
+                sforce.console.getEnclosingTabId(function(result) {
+                    var tabId = result.id;
+                    sforce.console.closeTab(tabId);
+                    event.preventDefault();
+                    event.stopPropagation();                    
+                });
+            });
+          }
+            
+   //     });
+            
+          // Functions for flip functionality on record type change -->
+          var X311CaseEdit = function(){
+            var rsOnChange = function(el){
+                if(j$('[id*=caseRecordType]').val() != 'Support Case'){
+                    j$('[id*=SubjectForCase]').val(j$('[id*=caseRecordType]').val());
+                }
+                if (j$(el).val()!="") {
+                    rsChange();  
+                }
+               
+            };          
+            var srtOnChange = function(el){
+                if (j$(el).val()!="") {
+                    srtChange();    
+                }
+            };
+                        
+             // Function for implementing Save and Close button -->
+             var SaveAndServiceNotNeeded = function(el){              
+                if (j$(el).val()!="") {      
+                    callSaveAndServiceNotNeeded();    
+                }
+            };
+            
+             var addAcc=function() {             
+                addAcc(); 
+               }; 
+          var SaveNewRedressCase=function(data)  {
+              SaveNewRedressCase();
+          };
+          
+          var SaveAndCaseCreatedinNovo=function() {             
+                SaveAndCaseCreatedinNovo(); 
+               }; 
+            var SaveAndServiceNotNeeded1=function() {      
+               SaveAndServiceNotNeeded1();
+               };
+               
+           // Function for auto population of zip code based on contact selected -->     
+           var contactOnChange=function() {
+                contactChange();
+               
+           }
+           var contactOnComplete=function() { 
+                 j$("input[id$=customerZip]").focus(); 
+           } 
+            
+      // Function for changing the script dynamically based on case record type selected -->     
+           var loadScript = function(el){
+            
+             /*   if ("{!ScriptName}"!="") {
+                    var patt1 = /\/apex\/[^\?]+/i;
+    
+                    for(var i=0; i<parent.frames.length; i++) {
+                        try {
+                            if (patt1.test(parent.frames[i].location.href) && parent.frames[i]!=window) {
+                                parent.frames[i].location.href=parent.frames[i].location.href.replace(patt1,"/apex/{!ScriptName}");
+                            }
+                        } catch(e) {
+                            window.console && console.log("e=", e);
+                        }
+                    }
+                } */
+            };
+            
+            var EmergencyTransfer=function() {      
+               EmergencyTransfer();
+               }; 
+               
+               var Cancel1=function() {      
+               Cancel1();
+               };
+               
+               
+               var Emergency=function() {      
+              Emergency()
+               }; 
+               
+                var SaveAndServiceNotNeededCaseOpened=function() {      
+               SaveAndServiceNotNeededCaseOpened();
+            }; 
+            
+            
+            return {rsOnChange:rsOnChange, 
+                    srtOnChange:srtOnChange, 
+                    SaveAndServiceNotNeeded:SaveAndServiceNotNeeded,
+                    loadScript:loadScript,
+                    addAcc:addAcc,
+                    SaveAndServiceNotNeededCaseOpened:SaveAndServiceNotNeededCaseOpened,
+                    SaveNewRedressCase:SaveNewRedressCase, 
+                    SaveAndCaseCreatedinNovo:SaveAndCaseCreatedinNovo,
+                    contactOnChange:contactOnChange,
+                    EmergencyTransfer:EmergencyTransfer,
+                    Emergency:Emergency,
+                    Cancel1:Cancel1,
+                    contactOnComplete:contactOnComplete};
+        }();
+        
+        // For contact look up functionality
+        
+       function openLookup(baseURL, width, modified, searchParam) {
+            var originalbaseURL = baseURL;
+            var originalwidth = width;
+            var originalmodified = modified;
+            var originalsearchParam = searchParam;
+            
+            var lookupType = baseURL.substr(baseURL.length-3, 3);
+            if (modified == '1') baseURL = baseURL + searchParam;
+            
+            var isCustomLookup = false;
+            
+            // Following "003" is the lookup type for Contact object
+            if (lookupType == "003") {
+                var urlArr = baseURL.split("&");
+                var txtId = '';
+                if (urlArr.length > 2) {
+                   urlArr = urlArr[1].split('=');
+                   txtId = urlArr[1];
+                }
+                
+                
+                 
+               
+               // Following is the url of Custom Lookup page.
+               baseURL = "/apex/CustomAccountLookup?txt=" + txtId; 
+               if(('{!$Profile.Name}' == 'City Department Heads') || ('{!$Profile.Name}' == 'Revenue Department Partner Full') || ('{!$Profile.Name}' == 'Revenue Department Partner Logins') || ('{!$Profile.Name}' =='Department Liaisons with Reports Partner Full') || ('{!$Profile.Name}' == 'Neighborhood Liaison') || ('{!$Profile.Name}' == 'City Council') || ('{!$Profile.Name}' == 'Police Department Liaisons') ||('{!$Profile.Name}' == 'Department Field Worker')||('{!$Profile.Name}' == 'Department Liaisons')||('{!$Profile.Name}' == 'State Reps')||('{!$Profile.Name}' == 'Various Civic City Groups, Kensignton CDC, Northern Liberties CDC'))
+                    {
+                    baseURL = "/internal/CustomAccountLookup?txt=" + txtId;
+                    }
+                                    
+                    
+               if(('{!$Profile.Name}' == 'Neighborhood Liaison Qualified') ||('{!$Profile.Name}' == 'Neighborhood Liaison Anonymous'))
+                    baseURL = "/liaisons/CustomAccountLookup?txt=" + txtId; 
+                
+               
+               // Following is the id of apex:form control "myForm". 
+               baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");
+               
+               if (modified == '1') {
+                   baseURL = baseURL + "&lksearch=" + searchParam;
+               }
+                
+                 // Following is the ID of inputField that is the lookup to be customized as custom lookup
+                 if(txtId.indexOf('Account') > -1 ){
+                   isCustomLookup = true;
+                }
+            }
+            
+            if (isCustomLookup == true){
+              // change for support ticket #11610700 START
+              //  openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", false);
+               window.open(baseURL,'_blank','width=480,height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no');
+            }
+            else {
+                if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
+            //    openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", false);
+              window.open(originalbaseURL,'_blank','width=480,height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no');
+            // change for support ticket #11610700 END
+            } 
+        }
+     // End of contact look up functionality  
+
+        function red ()    {
+            var d = {!Date};
+            var status = j$('[id*=stat]').val();
+          //  alert(d);
+            if(status == 'Redress' && d >= 30)
+                if(confirm('This case is over 30 days old and cannot be redressed.  A new case will be created.'))
+                   SaveNewRedressCase();
+        
+        }
+        function red1 ()    {
+            var d = {!Date1};
+            var status = j$('[id*=stat]').val();
+          //  alert(d);
+            if(status == 'Closed' && d <= 30&& j$('[id*=caseRecordType]').val()== 'Illegal Dumping')
+                //if(confirm('This case is over 30 days old and cannot be redressed.  A new case will be created.'))
+                   redressStatusSet();
+        
+        }
+        
+        function lang123() {
+           if((j$("[id $='trans']").val()=='Yes')) {           
+                j$("[id *='language']").removeAttr("disabled");
+                j$("[id *='language']").css("background-color","White");                 
+           } 
+           else {
+                j$("[id *='language']").prop('disabled','disabled') ;  
+                j$("[id *='language']").css("background-color","#EDEDED");      
+                          
+           }
+       } 
+        
+        function language() {
+           if(j$("[id $='language']").val()=='Other') {               
+               j$("[id $='otherlang']").removeAttr("disabled");
+           
+           }else {                
+                j$('[id*=otherlang]').attr("disabled","disabled"); 
+           }          
+          
+       }
+          // support ticket #09937110       
+       // This function fixes address button if validation fails        
+       function addressbuttonfix(){     
+       var win;     
+       
+        j$("<button class='btn' id='gis'>...</button>").insertAfter("input[id$=street]");       
+        j$("button#gis").click(function(){      
+            win=window.open('{!URLFOR($Page.X311GISMap)}','gisMap','toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=1100,height=600,top=200,left=200');       
+            return false;       
+        });     
+        
+        j$(window).unload(function() {      
+            win ? win.close() : '';     
+        });     
+       }        
+        
+       
+       function stattusup()    {
+           var val = j$("[id $='stat']").val();
+           j$("[id $='su'] option[value='']").html('');
+           var $none = j$("[id $='su'] option[value='']");
+           var $n1 = j$("[id $='su'] option[value='Request created and submitted to servicing department']");
+           var $n2 = j$("[id $='su'] option[value='Customer reported issue closed and not resolved (Redress)']");
+           var $o = j$("[id $='su'] option[value='Request has been received by servicing department']");
+           var $in1 = j$("[id $='su'] option[value='Investigation Conducted']");
+           var $in2 = j$("[id $='su'] option[value='Follow up investigation is scheduled']");
+           var $in3 = j$("[id $='su'] option[value='Assistance is required from another source']");
+           var $in4 = j$("[id $='su'] option[value='Case assigned to another servicing department']");
+           
+           j$("[id $='su']").val('');
+          // $none.hide();          
+           if(val == 'New')    {               
+               $n1.show();
+               $n2.show();
+               $o.hide(); 
+               $in1.hide(); 
+               $in2.hide(); 
+               $in3.hide(); 
+               $in4.hide();                                  
+           }
+           else if(val == 'Open')    {
+               $o.show();
+               $n1.hide();
+               $n2.hide();
+               $in1.hide(); 
+               $in2.hide(); 
+               $in3.hide(); 
+               $in4.hide();                                  
+           }
+           else if(val == 'In-Progress'){           
+                $none.show();
+                $in1.show(); 
+                $in2.show(); 
+                $in3.show(); 
+                $in4.show();
+                $n1.hide();
+                $n2.hide();
+                 $o.hide();                
+           }           
+           else    {
+                $in1.hide(); 
+                $in2.hide(); 
+                $in3.hide(); 
+                $in4.hide();
+                $n1.hide();
+                $n2.hide();
+                $o.hide();
+           }      
+       } 
+       
+       function disb(){
+                    if(j$("[id $='sReqLocKnown']").val() == 'Yes')
+                        j$('[id*=street]').removeAttr("disabled");
+                    else
+                        j$('[id*=street]').attr("disabled","disabled");  
+                
+                }
+       function fadeSaveButton() {
+           j$("[id $='saveButtonFaded']").hide();
+       }
+       // Fix for support ticket number 08955857  Start
+       function actionStatusStart() {
+           
+           j$("[id $='SaveButton']").hide();
+           j$("[id $='SaveAndCloseButton']").hide();
+           j$("[id $='savingButton1']").show();
+           
+           
+       }     
+       function actionStatusStop() {
+            j$("[id $='savingButton1']").hide();
+            j$("[id $='SaveButton']").show();
+           j$("[id $='SaveAndCloseButton']").show();
+       }
+       
+    <!-- Added By Raju for Contact Lookup--- Start --->
+       function doLookup (conId) {
+           //alert('test'+conId);
+           callLookup(conId);          
+       }
+    <!-- Added By Raju for Contact Lookup--- Start --->
+       
+       
+       
+       
+       // Fix for support ticket number 08955857  End
+    </script>
+    
+    <apex:sectionheader title="{!$ObjectType.Case.label} Edit" subtitle="{!IF(ISNULL(Case.casenumber), 'New Service Request',Case.casenumber)}"/>
+<div class="slds-scope" >
+    
+    <html>
+    <table>
+            <tr>
+                <td valign="top" height="100%" width="20%" style="background-color:#F5F5F8" id="FlowTableData">
+                
+                 <!-- Added By Raju for Contact Lookup--- Start --->
+                <div style="overflow:scroll" height="100%" width="20%" scrollbars="yes" > <!-- CHANGES FOR SUPPORT TICKET #11481140 -->
+                 <apex:outputPanel id="flowPanelDiv1" >
+                 <apex:iframe src="https://philly311--c.na77.visual.force.com/apex/CustomAccountLookup" scrolling="true"/> 
+                 </apex:outputPanel>
+                 </div>
+                 <!-- Added By Raju for Contact Lookup--- END--->
+                
+                   <!-- <div style="overflow:scroll; height:100%;width=20%" > -->
+                    <div style="overflow:scroll" height="100%" width="20%" > <!-- CHANGES FOR SUPPORT TICKET #11481140 -->
+                        <apex:outputPanel id="flowPanelDiv" >
+                            <apex:include pageName="{!Flow1Name}"/>  
+                        </apex:outputPanel>
+                    </div>
+                </td>    
+                
+                <td valign="top" id="NonFlowData">
+        <div  style="height:100%;width=25%" id="divNonFlowData">
+        <apex:form id="mainForm" > 
+        
+        <!-- Added By Raju for Contact Lookup--- Start--->
+        <apex:actionFunction action="{!lookUpContact}" name="callLookup" rerender="caseInformation,pbs,Account">
+                <apex:param assignto="{!caseIdTest}" name="param1" value=""/>
+             </apex:actionfunction>
+        <!-- Added By Raju for Contact Lookup--- END--->
+        
+        
+    
+    <!-- Fields that are hidden and auto populated -->
+        <!-- Support Ticket #10559896 & #09523840 fix Start -->  
+        <apex:inputHidden value="{!problemTypeChange}" id="ptchange"/>
+        <!-- Support Ticket #10559896 & #09523840 fix End -->  
+        
+        <apex:inputHidden value="{!Case.Centerline__Latitude__s}" id="clLatitude"/>
+        <apex:inputHidden value="{!Case.Centerline__Longitude__s}" id="clLongitude"/>
+        <apex:inputHidden value="{!Case.Centerline_Match_Type__c}" id="clMatchType"/>
+        <apex:inputHidden value="{!Case.Centerline_2272x__c}" id="cl2272x"/>
+        <apex:inputHidden value="{!Case.Centerline_2272y__c}" id="cl2272y"/>
+        <apex:inputHidden value="{!Case.Feature_Data__c}" id="featureData"/>
+        
+        <apex:inputHidden value="{!Case.PhillyRising__c}" id="SA_PHILLYRISING"/>
+        <apex:inputHidden value="{!Case.hansenAddressKey__c}" id="hansenAddressKey" />
+        <apex:inputHidden value="{!Case.L_I_Address__c}" id="hansenAddress" />
+      
+        <apex:inputHidden value="{!Case.Police_District__c}" id="SA_POLICE_District"/>
+        <!--<apex:inputHidden value="{!Case.Center_City_District__c}" id="SA_CENTER_CITY_DISTRICT"/> -->
+        <apex:inputHidden value="{!Case.Pickup_Day__c}" id="SA_STREETS_Rubbish"/>
+        <apex:inputHidden value="{!Case.Council_District_No__c}" id="SA_PLANNING_2016Councilmanic"/>
+        <apex:inputHidden value="{!Case.Ladder_Local__c}" id="LadderLocal"/>
+        <apex:inputHidden value="{!Case.Engine_Local__c}" id="EngineLocal"/>
+        
+        
+        <apex:inputHidden value="{!Case.RecordTypeId}" id="recordtype" />
+        <apex:inputHidden value="{!Case.Sanitation_District__c}" id="SA_STREETS_Sanitation_Districts"/>
+        <!-- Related Cases change 10577449 START UNISYS-->
+         <!--<apex:inputHidden value="{!Case.ParentId}" required="false" id="parentId_lkid" />-->
+        <!-- Related Cases change 10577449 END UNISYS -->
+         <apex:inputHidden value="{!caseComments}" id="caseComments"/>
+      <!--  <apex:inputHidden value="{!Case.ZipCode__c}" id="SA_STREETS_ZipCode"/>   -->
+
+        <apex:actionFunction name="crts" action="{!CaseRecordTypeChange}" />
+        <apex:actionFunction name="rsChange" action="{!rsChange}"  />
+        <apex:actionFunction name="srtChange" action="{!srtChange}"  />
+        <apex:actionFunction name="addAcc" action="{!addAcc}"  /> 
+        <apex:actionFunction name="contactChange" action="{!contactChange}" oncomplete="X311CaseEdit.contactOnComplete();"  rerender="customerZip,phoneno" /> <!--  Problem here rerender="Account,customerZip"   --> <!-- Uat Case Number:05012250 fix -->
+        <apex:actionFunction name="saveAndClose" action="{!SaveAndClose}"  />
+        <apex:actionFunction name="SaveAndServiceNotNeeded" action="{!SaveAndServiceNotNeeded}"  />
+        <apex:actionFunction name="SaveAndCaseCreatedinNovo" action="{!SaveAndCaseCreatedinNovo}" />
+         <apex:actionFunction name="SaveAndServiceNotNeededCaseOpened" action="{!SaveAndServiceNotNeededCaseOpened}" />
+        <apex:actionFunction name="SaveAndServiceNotNeeded1" action="{!SaveAndServiceNotNeeded1}" />
+        <apex:actionFunction name="SaveNewRedressCase" action="{!SaveNewRedressCase}" />
+        <apex:actionFunction name="redressStatusSet" action="{!redressStatusSet}" />
+        <apex:actionFunction name="SaveAndServiceNotNeededLI06" action="{!SaveAndServiceNotNeededLI06}" />
+        <apex:actionFunction name="EmergencyTransfer" action="{!EmergencyTransfer}" />
+        <apex:actionFunction name="Emergency" action="{!Emergency}" />
+         <apex:actionFunction name="Cancel1" action="{!Cancel1}" />
+      <!-- Buttons --> 
+        <apex:pageblock mode="edit" title="{!$ObjectType.Case.label} Edit" id="edit">
+           <apex:pageblockbuttons >
+              <!-- <apex:commandbutton value="Save" action="{!CustomSave}" /> -->
+              <!-- <apex:commandButton value="Save" onclick="fadeSaveButton()" action="{!CustomSave}" id="saveButtonFaded"/> 
+              <apex:commandbutton value="Save & Close" action="{!SaveAndClose1}"/> -->
+              <!-- Fix for support ticket number 08955857  Start -->
+              <!-- Fix for Donation bin #10660908 START -->
+              <apex:commandButton value="Save" status="saveStatus" action="{!CustomSave}" id="SaveButton" reRender="edit" oncomplete="addressbuttonfix();mainflow();" />
+              <apex:commandbutton value="Save & Close" action="{!SaveAndClose1}" id="SaveAndCloseButton" status="saveStatus" rerender="edit" oncomplete="addressbuttonfix();mainflow();"/> 
+              <!-- Fix for Donation bin #10660908 END -->
+              <apex:commandButton disabled="true" value="Saving.." id="savingButton1"/>
+              <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+              <apex:actionStatus id="saveStatus" onstart="actionStatusStart()" onstop="actionStatusStop()" />
+              <!-- Fix for support ticket number 08955857  End -->
+              
+            </apex:pageblockbuttons>
+
+     <!--Department Details section -->
+     
+           <apex:outputpanel id="editpanel">
+           <apex:pageblocksection title="Department Details" showheader="true" columns="1" rendered="{!userinfo == false}">
+              <apex:inputfield value="{!Case.Type}"  required="false"> 
+               <apex:actionSupport event="onchange" reRender="editpanel"/>
+               </apex:inputfield>
+               
+                <apex:inputfield value="{!Case.Department__c}" StyleClass="RemoveNone" required="false" id="departmnt" />
+                 <apex:selectList value="{!Case.Case_Record_Type__c}" StyleClass="RemoveNone" size="1" id="cs1" required="false" rendered="{!recordtypeinfoInformationRequest}"> <!-- {!IF(Case.Type == 'Information Request Type',true,false)} -->
+                         <apex:selectOptions value="{!Information}"/> 
+                    </apex:selectList>  
+                <apex:inputfield value="{!Case.Case_Record_Type__c}" StyleClass="RemoveNone" id="caseRecordType" required="false" onchange="X311CaseEdit.rsOnChange(this);" rendered="{!recordtypeinfoNotInformationRequest}" />  <!-- {!IF(Case.Type != 'Information Request Type',true,false)} -->
+                <apex:inputfield value="{!Case.Service_Request_Type__c}" StyleClass="RemoveNone"  required="false" id="sreq" rendered="{!recordtypeinfoNotInformationRequest}" onchange="c()"/>      <!-- {!IF(Case.Type != 'Information Request Type',true,false)} -->                
+             <apex:selectList value="{!Case.Service_Request_Type__c}" StyleClass="RemoveNone" size="1" id="cs2" required="false" rendered="{!recordtypeinfoInformationRequest}"> <!-- {!IF(Case.Type == 'Information Request Type',true,false)} -->
+                         <apex:selectOptions value="{!ServiceType}"/> 
+                    </apex:selectList>
+             </apex:pageblocksection>
+             
+             <!--- partner pages Integration code -->
+              <apex:pageblocksection title="Department Details" showheader="true" columns="1" rendered="{!userinfo == true}">
+                <apex:outputfield value="{!Case.Type}" />                    
+                    <apex:outputfield value="{!Case.Department__c}" />
+                    <apex:outputfield value="{!Case.Case_Record_Type__c}" id="caseRecordType"  />
+                    <!-- Support ticket fix for ticket #09009915 - added id = "sreq" !-->
+                   <apex:selectList value="{!Case.Service_Request_Type__c}" id="sreq" size="1">
+                     <apex:selectOptions value="{!Srname}" /> 
+                    </apex:selectList> 
+                                          
+                </apex:pageblocksection>
+         <!--- partner pages Integration code End-->
+         
+          <!-- Service Request Location section -->           
+           <apex:pageblocksection title="Service Request Location" showheader="true" rendered="{!recordtypeinfo}" collapsible="true" columns="2">
+            <apex:inputfield value="{!Case.Service_Request_Location_known__c}" required="false" rendered="{!recordtypeinfo1}" id="sReqLocKnown" onchange="violationFire3();disb()" />         
+            <apex:pageblocksectionitem rendered="{!recordtypeinfo1}" />  
+            <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$ObjectType.Case.Fields.Street__c.label}" />
+                <apex:outputPanel >
+                    <div class="slds-form-element">
+   						<div class="slds-form-element__row ">                     
+                    
+                    <div styleclass="slds-input slds-is-required" width="70%">
+                          <apex:inputfield value="{!Case.Street__c}" id="street"/>
+                  </div>
+                            </div>
+                        </div>
+                 </apex:outputPanel>
+           </apex:pageBlockSectionItem> 
+           <br/>
+           <apex:inputfield value="{!Case.ZipCode__c}"  id="SA_STREETS_ZipCode" rendered="true" />         
+              <apex:pageblocksectionitem />
+             
+            
+           </apex:pageblocksection>  
+                 
+      <!-- Case Information Section -->
+      <apex:inputHidden value="{!caseIdTest}" id="csHidden"/>
+           <apex:outputPanel id="caseInformation">
+             <apex:pageblocksection title="Case Information" showheader="true" columns="2" id="pbs">                
+                 
+               <apex:inputfield value="{!Case.ContactId}" required="false" id="Account" onchange="X311CaseEdit.contactOnChange()"/>              
+                 
+                <apex:inputfield value="{!Case.Zip_code__c}" id="customerZip" />
+               
+               <apex:pageBlockSectionItem rendered="{!recordtypeinfo2}">
+                      <apex:outputLabel value="{!$ObjectType.Case.Fields.Phone_Number__c.label}"  />
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.Phone_Number__c }" id="phoneno"  />
+                          </div>
+                         </apex:outputPanel>
+                   </apex:pageBlockSectionItem> 
+                  
+                <apex:inputfield value="{!Case.Customer_Declined__c}" id="customer" rendered="{!recordtypeinfo2 == false}"/> 
+             
+             <!--Related Cases change 10577449 START UNISYS -->
+                              <script>
+                     function createDup(caseref){
+                         
+                         //alert('test'+ $("[id $='parentId_lkid']").val());
+                         var parentId = $("[id $='parentId_lkid']").val();
+                         console.log('*****'+parentId);
+                       
+                            var pathname ='{!$CurrentPage.parameters.Id}';
+                        
+                          if(pathname==null || pathname ==''){
+                            sforce.connection.sessionId = '{!$Api.Session_ID}';
+                      
+                            console.log('parent'+parentId);
+                            var quer = "SELECT Id, CaseNumber, Structure_Collapsing__c, Location_of_Dangerous_Condition__c, Vacant_or_Occupied__c from Case WHERE  CaseNumber = '"+parentId+ "'"; 
+                            var records = sforce.connection.query(quer); 
+                            var records1 = records.getArray('records'); 
+                             console.log('******'+records1[0].Id);
+                              var url = sforce.apex.execute("X311CaseEditClrExt","redress1",{caseId:records1[0].Id}); 
+                           console.log('*****'+url);
+                          if(url.indexOf('Error')== -1){ 
+                           if('{!TEXT($User.UserType)}' == 'Standard') 
+                           window.open('/' + url, '_self'); 
+                            else 
+                           window.open('/internal/' + url, '_self'); 
+                           } 
+                             else 
+                          alert(url);
+                         }
+                     
+                     }
+           
+                 </script>
+                 
+               
+                 <apex:actionFunction name="createCaseDup" oncomplete="createDup();"/>
+                 <apex:inputfield value="{!Case.ParentId}" required="false" id="parentId_lkid" /> 
+              <!--Related Cases change 10577449 END UNISYS -->
+                
+                 <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$ObjectType.Case.Fields.Translator_Required__c.label}" />
+                <apex:outputPanel >
+                    <div class='requiredInput'>
+                        <div class='requiredBlock'></div>
+                          <apex:inputfield value="{!Case.Translator_Required__c}" StyleClass="RemoveNone" id="trans" onchange="lang123()" />
+                  </div>
+                 </apex:outputPanel>
+           </apex:pageBlockSectionItem> 
+           
+                       
+               <apex:inputfield value="{!Case.Language__c}" id="language" onchange="language()"  StyleClass="RemoveNone"/> 
+                <apex:inputfield value="{!Case.Other_Language__c}" id="otherlang"/> 
+                <apex:inputfield value="{!Case.Status}" styleClass="RemoveNone1"  required="true" id="stat" onchange="stattusup();red()"/>
+               <apex:pageBlockSectionItem > 
+              <apex:outputLabel value="{!$ObjectType.Case.Fields.Origin.label}" />
+                <apex:outputPanel >
+                    <div class='requiredInput'>
+                        <div class='requiredBlock'></div>
+                         <apex:inputfield value="{!Case.Origin}" StyleClass="RemoveNone" required="false"/>
+                  </div>
+                 </apex:outputPanel>
+              </apex:pageBlockSectionItem> 
+                
+              <apex:pageblocksectionitem />
+              
+             <apex:inputfield value="{!Case.Validated_Cases_from_PS__c}" 
+                                        rendered="{!IF(Case.Customer_Request_Id__c == null, FALSE, TRUE)}"/>
+             </apex:pageblocksection>
+           </apex:outputPanel>
+                 
+<!-- ********** insertion point - Inserion of fields specific to the record type selected **********  -->
+    <apex:insert name="typeSpecific" />
+<!-- **********                                                                           **********  -->
+    
+      <!-- Description Information section -->
+           <apex:pageblocksection title="Description Information" showheader="true" columns="1">
+             <apex:pageBlockSectionItem >
+             <apex:outputLabel value="{!$ObjectType.Case.Fields.Subject.label}" />
+                <apex:outputPanel >
+                  <div class='requiredInput'>
+                      <div class='requiredBlock'></div>
+                      <apex:inputfield value="{!Case.Subject}" style="height:15px ; width:300px" id="SubjectForCase" />
+                  </div>
+             </apex:outputPanel>
+           </apex:pageBlockSectionItem> 
+            <!--<apex:pageblocksectionitem />
+             <apex:inputfield value="{!Case.Status_Update__c}"  required="false" id="su"/> 
+              <apex:pageblocksectionitem />-->
+             <apex:pageBlockSectionItem rendered="{!IF(Case.Case_Record_Type__c != 'Information Request',IF(Case.RecordTypeId != '012G00000014BWo', true,false),false)}">
+              <apex:outputLabel value="Description" />
+                <apex:outputPanel >
+                    <div class='requiredInput'>
+                        <div class='requiredBlock'></div>
+                        <apex:inputField value="{!Case.Description}" id="description" style="height:50px ; width:400px" />
+                    </div>
+                </apex:outputPanel>
+                </apex:pageBlockSectionItem>                
+              <apex:pageBlockSectionItem rendered="{!IF(Case.Case_Record_Type__c != 'Information Request',IF(Case.RecordTypeId != '012G00000014BWo', true,false),false)}"/>  
+             
+                <apex:pageBlockSectionItem rendered="{!IF(Case.Case_Record_Type__c == 'Information Request',true,IF(Case.RecordTypeId == '012G00000014BWo', true,false))}">
+                    <apex:outputLabel >Description </apex:outputLabel>                    
+                     <apex:inputfield value="{!Case.Description}" style="height:50px ; width:400px" id="description" />
+                </apex:pageBlockSectionItem> 
+                 <apex:pageBlockSectionItem rendered="{!IF(Case.Case_Record_Type__c == 'Information Request', true, IF(Case.RecordTypeId == '012G00000014BWo', true,false))}"/>     
+                  
+                    
+             <apex:pageBlockSectionItem >
+              <apex:outputLabel >Internal Comments</apex:outputLabel>                    
+                 <apex:inputTextArea id="caseInternalComments" value="{!Comment}" cols="75" rows="6" />
+                 </apex:pageBlockSectionItem> 
+             </apex:pageblocksection>
+    
+       <!-- Optional section -->  
+         <!-- Added BY Raju Kona -->            
+           <!-- <apex:pageBlockSection id="pgBlockSectionOptional" title="Optional" collapsible="false" columns="1">
+                <apex:inputCheckBox value="{!sendEmailNotification}" label="Send Update Emails to Contact" />
+            </apex:pageBlockSection>    -->
+                      <!-- Added BY Raju Kona -->      
+            </apex:outputpanel>
+       </apex:pageblock>
+    </apex:form>
+    </div>
+      </td>
+      <td valign="top" width="25%" height="100%">
+              <!--  <div style="overflow:scroll; height:100%;width=25%;background-color:#F5F5F8" id="KBdata" >  CHANGES FOR SUPPORT TICKET #11481140 -->
+               <div style="overflow:scroll" height="100%" width="25%" id="KBdata"> 
+                        <apex:include pageName="ArticleList2"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </html>
+    </div>
+    <c:gisConnector recordType="{!Case.recordTypeid}"/>
+    
+</apex:page>

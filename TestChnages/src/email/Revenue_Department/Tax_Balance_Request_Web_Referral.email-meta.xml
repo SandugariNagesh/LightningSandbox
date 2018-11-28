@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Tax Balance Request-Web Referral - Email Template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Revenue_Department_Letter_Head</letterhead>
+    <name>Tax Balance Request-Web Referral</name>
+    <style>freeForm</style>
+    <subject>{!Case.Subject}</subject>
+    <textOnly>Dear {!Contact.Name},
+
+Thank you for contacting The Philadelphia Department of Revenue. Real Estate Tax balances are public information. You can search for property information at: http://www.phila.gov/revenue/realestatetax/
+
+Any other information, such as the amount of taxes paid, are not public. You must get this information from the property owner.
+
+If you are a property owner, and you&apos;d like to receive information that is not public about your property, please submit your request in writing to revenue@phila.gov.
+
+If you have additional questions, please feel free to email us back for help. Please include the case ID number in the subject line of your email. For your reference, your case number is the following: {!Case.CaseNumber}.
+
+
+Thank you,
+
+
+
+Follow us on:  Facebook  Twitter YouTube
+
+Let us know how we’re doing! Take our 30 second survey
+
+
+
+This email may contain confidential and/or privileged information. If you are not the intended recipient, please notify the sender and delete this e-mail immediately.  Any unauthorized copying, disclosure or distribution of material in this e-mail is strictly forbidden.
+
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Positive Feedback</name>
+    <style>formalLetter</style>
+    <subject>Thank you for your feedback.</subject>
+    <textOnly>Thank you for contacting the Philly 311 Contact Center.  We appreciate your positive feedback.  We try every day to exceed service expectations.</textOnly>
+    <type>html</type>
+</EmailTemplate>

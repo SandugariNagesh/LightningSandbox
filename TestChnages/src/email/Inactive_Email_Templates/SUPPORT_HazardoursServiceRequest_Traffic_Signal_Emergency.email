@@ -1,0 +1,20 @@
+****Hazardous Case Alert****
+ 
+The following report was received from 311 and forwarded automatically to you based on the fact the problem type chosen by user was for a Traffic Signal Emergency.
+ 
+Please process as soon as possible.
+ 
+Streets ID#:{!Case.Streets_Request_ID__c}
+Case ID#: {!Case.CaseNumber}
+Type: {!Case.Problem_Type__c}
+Submitted: {!Case.CreatedDate}
+Address: {!Case.Street__c}
+Comments: {!Case.Description}
+Name: {!Contact.Name}
+Phone: {!Contact.Phone}
+Email: {!Contact.Email}
+ 
+Regards,
+ 
+{!Organization.Name}
+Customer Support

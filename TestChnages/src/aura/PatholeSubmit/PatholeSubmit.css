@@ -1,0 +1,12 @@
+.THIS.custbtn{
+    padding-left: 110px !important;
+    padding-right: 107px !important;
+    text-decoration: none !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    display: inline-block !important;
+    width: 100% !important;
+    /* border: 0 !important; */
+    line-height: inherit !important;
+    border-radius: unset !important;
+}

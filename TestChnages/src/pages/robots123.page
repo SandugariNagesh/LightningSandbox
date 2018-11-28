@@ -1,0 +1,6 @@
+<apex:page contentType="text/plain">
+<!--User-agent: *
+Disallow:   # hides everything from ALL bots
+Allow: /s  # add path you want to open to bots
+Sitemap: https://philly.force.com/gv-dibeaskrz54cr7.dv.googlehosted.com/s/sitemap.xml -->
+</apex:page>

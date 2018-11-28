@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>KnowledgeArticle$Title</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>KnowledgeArticle.ViewStats$ViewCount</field>
+    </columns>
+    <columns>
+        <field>KnowledgeArticle$LastModifiedBy</field>
+    </columns>
+    <columns>
+        <field>KnowledgeArticle$LastPublishedDate</field>
+    </columns>
+    <columns>
+        <field>KnowledgeArticle$LastModifiedDate</field>
+    </columns>
+    <columns>
+        <field>KnowledgeArticle$IsVisibleInApp</field>
+    </columns>
+    <columns>
+        <field>KnowledgeArticle$IsVisibleInPrm</field>
+    </columns>
+    <columns>
+        <field>KnowledgeArticle$IsVisibleInPkb</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>KnowledgeArticle.ViewStats$NormalizedScore</field>
+    </columns>
+    <description>How many times has each article been viewed?</description>
+    <filter>
+        <criteriaItems>
+            <column>KnowledgeArticle.ViewStats$Channel</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>-1</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Article Views by Channel</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Knowledge_Articles_with_view__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>KnowledgeArticle.ViewStats$ViewCount</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>KnowledgeArticle$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

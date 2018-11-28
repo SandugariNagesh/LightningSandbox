@@ -1,0 +1,5 @@
+The {!Case.Department__c} {!Case.CaseNumber} is Missing Int ID after one hour and it is not from Web/Mobile.
+
+{!Case.Water_Request_ID__c}
+{!Case.Streets_Request_ID__c}
+{!Case.Hansen_Request_ID__c}

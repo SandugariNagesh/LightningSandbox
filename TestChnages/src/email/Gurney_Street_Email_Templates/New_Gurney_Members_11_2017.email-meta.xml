@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>New Gurney Members 11/2017</name>
+    <style>freeForm</style>
+    <subject>El Barrio es Nuestro Town Hall Meeting</subject>
+    <textOnly>Good Evening,
+
+Thank you for submitting a service request in the 19133 &amp; 19134 area. We appreciate your active participation and enthusiasm in working together to eradicate the blight, vandalism, and social ills affecting the quality of life in our community. Please join us for our next El Barrio es Nuestro Community meeting:
+
+Date: November 28, 2017
+Time: 5:30pm-7:00pm
+Location: 2600 American Street, Philadelphia, PA 19133  
+
+
+If you wish you to unsubscribe from future Gurney Campaign emails, please click here.</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>UnidosPa&apos;Pr</name>
+    <style>freeForm</style>
+    <subject>Urgent Message from UNIDOS PA’PR</subject>
+    <textOnly>Hello Friends,
+
+
+We are reaching out to you to respectfully request your participation in an urgent meeting to bring together Philadelphia&apos;s non-profit family to strategize on how to best serve the Puerto Rican community both on the island and on the mainland as many Puerto Ricans decide to evacuate the island and come to Pennsylvania in the aftermath of Hurricanes Irma and Maria.
+
+
+Please join Unidos PA’PR for a breakfast meeting on Friday, November 3, 2017, at 8AM, at Taller Puertorriqueño, 2600 N 5th St, Philadelphia, PA 19133.
+
+
+Your participation at this meeting is critical. Prior to Hurricanes Irma and Maria, Pennsylvania was the most popular destination for Puerto Ricans leaving the island, according to a 2015 report from the Pew Research Center. Preceding that report, the 2010 Census listed Philadelphia as the city with the second largest number of Puerto Ricans in the mainland US (121,643). We expect that number to increase markedly in the coming months as the prolonged recovery of Puerto Rico continues to demand our outmost attention and support.
+
+
+Please join this call to action, unity and collaboration. Please RSVP your participation by Thursday, November 2nd, 2017 to Lauren Malachi at Lauren.Malachi@phila.gov or at 215-686-3646. We look forward to you seeing you and/or a representative of your agency at this important meeting.</textOnly>
+    <type>html</type>
+</EmailTemplate>

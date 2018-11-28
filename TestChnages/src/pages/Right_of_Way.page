@@ -1,0 +1,4 @@
+<apex:page standardController="Case"  >
+    <flow:interview name="Right_of_Way" id="RightofWay">
+    </flow:interview>
+</apex:page>

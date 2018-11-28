@@ -1,0 +1,271 @@
+<!-- 311GISMap is used for getting the user input address and locating it on the map -->
+
+<apex:page showHeader="false" sidebar="false">
+    <!-- Use JSON2 library for parsing json in IE7 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20140204/json2.min.js" />
+
+    <apex:includeScript value="{!URLFOR($Resource.XedeDefaultAssets,'js/encoder.js')}" />
+
+
+
+    <input id="address" type="text" value=""/>
+    <button id="locate" onclick="window.AddressCandidate();">locate</button>
+    <button onclick="window.addLayer();">add layers</button>
+
+    <br />
+    <div id="multiple" style="display:none">
+        There are similar addresses. Please select one from the list
+        <span id="list">
+            <select id="selectAddress">
+
+            </select>
+            <button id="locate" onclick="locateFromList()">locate</button>
+        </span>
+    </div>
+
+    <c:gisMap />
+
+       <script>
+
+
+        if(typeof aGisApi !== "undefined"){
+            window.opener.setGisApi(aGisApi);
+
+        }
+        function addPoint(aStreetAddress) {
+            if (window.opener && window.opener.saveGeodata) {
+                aGisApi.mapAddress(aStreetAddress, 'CenterlineOnly', function (data) {
+                  console.log('going to save geodata', data);
+                  window.opener.saveGeodata(data);
+                });
+            } else {
+                aGisApi.mapAddress(aStreetAddress);
+            }
+        }
+
+        var AddressCandidate =  function() {
+            actionStatusOn('Checking similar addresses');
+            $$('#multiple').css('display','none');
+            anAddress = document.getElementById('address').value;
+            console.log("anAddress: " + anAddress);
+            GISController.AddressCandidates(anAddress, function(result, event) {
+                if (event.status == false) {
+                    alert('callout failed');
+                    return;
+                }
+
+                OnSuccess(result, event, function(result) {
+                    if (result.successful == 'false') {
+                        actionStatusOff();
+                        console.log(JSON.stringify(result));
+                        alert(Encoder.htmlDecode(result.message[0]));
+                        return;
+                    }
+
+                    console.log(result);
+                    //console.log("addresses :",result.jmap.addresses);
+                    if (result.jmap.addresses.length < 2){
+                        actionStatusOff();
+                        addPoint(document.getElementById('address').value);
+                    } else {
+                        var addressArray = [];
+                        for (var j = 0; j < result.jmap.addresses.length; j++) {
+                            addressArray.push(Encoder.htmlDecode(result.jmap.addresses[j].standardizedAddress));
+                        }
+
+                        console.log("addresses :",addressArray);
+                        var select = document.getElementById("selectAddress");
+                        select.options.length = 0;
+                        for (var i = 0; i < addressArray.length; i++) {
+                            var opt = addressArray[i];
+                                var el = document.createElement("option");
+                            el.textContent = opt;
+                            el.value = opt;
+                            select.appendChild(el);
+                        }
+                        actionStatusOff();
+                        $$('#multiple').css('display','block');
+                    }
+                });
+            },{escape:true, buffer:false});
+        }
+
+        function locateFromList(){
+            var selectedValue= $$('#selectAddress').val();
+
+            addPoint(selectedValue);
+        }
+
+        var addLayer = function() {
+            var url = 'https://www.arcgis.com/sharing/rest/generateToken?username=311application.philly&password=IGCD15MS&client=referer&f=json&referer=www.salesforce.com';
+            var aClient = new XedeHttpClient();
+            aClient.post(url,
+                function(result) {
+                    window.console && console.log('finished : ', url);
+                //    window.console && console.log('result', result);
+
+                    var resultObject = JSON.parse(result);
+
+                     aGisApi.addLayer([
+                        //  [ "Street Lights", "https://services2.arcgis.com/YRlMlhu838MHTM0n/ArcGIS/rest/services/streetPoles/FeatureServer/0?token=" + resultObject.token ],  Commented for support ticket #11112987
+                        //  [ "Parks", "https://services2.arcgis.com/YRlMlhu838MHTM0n/ArcGIS/rest/services/PPR_adminBound/FeatureServer/0?token=" + resultObject.token ],   Commented for support ticket #11112987
+                        "https://services2.arcgis.com/YRlMlhu838MHTM0n/ArcGIS/rest/services/streetPoles/FeatureServer/0?token=" + resultObject.token,    // Street poles for support ticket #11112987
+                        "https://services2.arcgis.com/YRlMlhu838MHTM0n/arcgis/rest/services/water_Hydrants/FeatureServer/0?token=" + resultObject.token,    // water hydrants
+                        "https://services2.arcgis.com/YRlMlhu838MHTM0n/arcgis/rest/services/water_Inlets/FeatureServer/0?token=" + resultObject.token,  // water inlets
+                        "https://services2.arcgis.com/YRlMlhu838MHTM0n/ArcGIS/rest/services/PPR_adminBound/FeatureServer/0?token=" + resultObject.token,   // parks for support ticket #11112987
+
+
+                           //uncommented for support ticket# :08967149
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Business/MapServer/8",               // business permits
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Construction/MapServer/12",          // zoning permits
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Construction/MapServer/18",          // building permits
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Construction/MapServer/0",           // Construction Violation
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Construction/MapServer/10",           // Mechanical Permits
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Construction/MapServer/14",           // Electrical Permits
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Construction/MapServer/16",           // Plumbing Permits
+
+                        //"{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Hospitals/MapServer/0",                // hospital
+                        //"{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/Health_Centers/MapServer/0",           // health center
+
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ServiceAreas/MapServer/8",           // police district
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ServiceAreas/MapServer/12",          // rubbish
+
+                        //"{!$Setup.GIS__c.ESRIServices__c}/MDO/Philly_Rising_Boundaries/MapServer/0",  // philly rising boundaries
+                        //"{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ServiceAreas/MapServer/19",            // L&I districts
+                        //"{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ZoningMap/MapServer/0",                // zoning parcels
+                        //"{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ZoningMap/MapServer/1",                // zoning overlay
+                        "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ZoningMap/MapServer/6",                // zoning base
+                        [ "Zoning" , "{!$Setup.GIS__c.ESRIServices__c}/PhilaGov/ZoningMap/MapServer" ],             // zoning all
+                        "https://services2.arcgis.com/YRlMlhu838MHTM0n/arcgis/rest/services/Smoke_Alarm_Requests/FeatureServer/0?token=" + resultObject.token, // smoke alarm requests
+                    ]);
+                },
+                function(result) {
+                    window.console && console.log('FAILED   : ', url);
+                    window.console && console.log('result', result);
+                    alert("Unable to login to Philly GIS Services.");
+                }
+            );
+        }
+
+        function isIE () {
+           var myNav = navigator.userAgent.toLowerCase();
+           return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+        }
+
+
+        var XedeHttpClient = function() {
+
+
+    //Use XDomainRequest in IE 9 and below to prevent CORS issue
+    var useXDomain = false;
+    if(typeof isIE() === 'number'){
+      if(isIE() <=9) {
+         useXDomain = true;
+      }
+    }
+
+
+    this.do1 = function(aMethod, anArray) {
+
+        if (anArray.length != 2 && anArray.length != 3)
+            return;
+
+        var aUrl = anArray[0];
+        var onSuccess = anArray[1];
+        var onFailure = function() {};
+
+        if (arguments.length === 3)
+            onFailure = arguments[2];
+
+        var anHttpRequest;
+
+
+          if(useXDomain){
+           anHttpRequest = new XDomainRequest();
+           anHttpRequest.onload = function() {
+               onSuccess(anHttpRequest.responseText);
+
+           }
+           if(isIE()===9)
+              anHttpRequest.onprogress = function() {};
+
+            }else{
+            anHttpRequest = new XMLHttpRequest();
+            anHttpRequest.onreadystatechange = function() {
+            //window.console && console.log('anHttpRequest', anHttpRequest);
+
+            if (anHttpRequest.readyState === 4) {
+                if (anHttpRequest.status >= 200 && anHttpRequest.status <= 299){
+                    onSuccess(anHttpRequest.responseText);
+                }else{
+                    onFailure(anHttpRequest.responseText);
+                }
+            }
+        }
+
+              }
+
+        if(useXDomain){
+           anHttpRequest.open(aMethod, aUrl);
+        }else{
+           anHttpRequest.open(aMethod, aUrl,true);
+        }
+
+
+        if (this.timeout)
+            anHttpRequest.timeout = this.timeout;
+
+        anHttpRequest.send( null );
+    }
+
+    this.post = function(aUrl) {
+        this.do1("POST", arguments);
+    }
+
+    this.get = function(aUrl) {
+        this.do1("GET", arguments);
+    }
+
+    this.timeout;
+}
+
+
+        $$(function() {
+            if (window.opener && window.opener.getGeoCodeSpec) {
+                window.opener.getGeoCodeSpec(function (geoCodeSpec) {
+                    if (geoCodeSpec) {
+                        $$("input#address").val(Encoder.htmlDecode(geoCodeSpec.address));
+                        var layerList = [];
+
+                        geoCodeSpec.layers.forEach(function(eachLayer, index, list) {
+                            layerList.push('{!$Setup.GIS__c.ESRIServices__c}/' + eachLayer);
+                        });
+
+                        aGisApi.addLayer(layerList);
+                    }
+                });
+            }
+        });
+
+        // easy function for handling errors from Javascript Remote requests
+        // this guy deals with the errors, and calls aFunction on success.
+        function OnSuccess(result, event, aFunction) {
+
+           if (event.status) {
+               aFunction(result);
+               return;
+           }
+
+           if (event.type === 'exception' && event.message.indexOf("Logged in?") != -1) {
+               var host = window.location.host;
+               var protocol =  window.location.protocol;
+               window.top.location.href = protocol +"//" + host ;
+           }
+           else
+               alert("Exception: " + Encoder.htmlDecode(event.message));
+       }
+
+
+   </script>
+
+</apex:page>

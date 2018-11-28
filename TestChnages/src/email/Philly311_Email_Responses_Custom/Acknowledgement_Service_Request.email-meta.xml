@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Acknowledgement of receipt of customer&apos;s service request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Acknowledgement: Service Request</name>
+    <style>freeForm</style>
+    <subject>Philly 311 Reply to Your Inquiry Related to  {!Case.RecordType}, Case #{!Case.CaseNumber}</subject>
+    <textOnly>Dear Customer,
+
+Thank you for contacting the City of Philadelphia’s 311 Contact Center. Your request has been forwarded to the appropriate department for investigation and appropriate action.
+
+The case number for this request is {!Case.CaseNumber}; regarding &quot;{!Case.RecordType}&quot;. You may track the status of your request using the reference number provided via our website at http://www.phila.gov/311, by replying to this email or dialing 3-1-1 (outside of Philadelphia dial 215-686-8686). Please note updates to the website may take up to 48 hours to appear.
+
+Regards,
+Philly311
+Customer Support
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

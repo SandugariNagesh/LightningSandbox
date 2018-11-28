@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Misrouted - Tax Clearance Unit - Email Template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Revenue_Department_Letter_Head</letterhead>
+    <name>Misrouted - Tax Clearance Unit</name>
+    <style>freeForm</style>
+    <subject>{!Case.Subject}</subject>
+    <textOnly>Dear {!Contact.Name},
+
+Thank you for contacting The Philadelphia Department of Revenue. We received your email, and have sent it to the Tax Clearance Unit at tax.clearance@phila.gov for review. This team will be able to assist you. If you don’t receive a response within 3 business days, please follow up with the Tax Clearance  Unit at the email mentioned above.
+
+
+
+Thank you,
+
+
+Follow us on:  Facebook Twitter YouTube
+
+Let us know how we’re doing! Take our 30 second survey
+
+
+This email may contain confidential and/or privileged information.  If you are not the intended recipient, please notify the sender and delete this e-mail immediately.  Any unauthorized copying, disclosure or distribution of material in this e-mail is strictly forbidden.
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

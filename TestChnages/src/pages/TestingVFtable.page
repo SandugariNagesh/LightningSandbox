@@ -1,0 +1,23 @@
+<apex:page standardController="Case" >
+    <apex:includeScript value="/support/console/44.0/integration.js"/>
+<apex:includeScript value="{!URLFOR($Resource.XedeDefaultAssets, 'js/jquery-1.10.2.min.js')}"/>
+     <apex:includeScript value="{!$Resource.Jquery_alert}" />
+     <apex:stylesheet value="{!$Resource.Alert_Css}" />  
+     <apex:includeScript value="/soap/ajax/25.0/connection.js"/>
+     <apex:includeScript value="/soap/ajax/25.0/apex.js"/>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <A HREF="#" onClick="testIsInConsole();return false"> Click here to check if the page is in the Service Cloud console</A> 
+
+    <script type="text/javascript" src= '//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'>
+        function testIsInConsole() 
+		{
+            if (sforce.console.isInConsole()) {
+                  alert('Is in console');
+               } else {
+                  alert('Not in console');
+            }
+        }
+    </script>
+
+
+</apex:page>

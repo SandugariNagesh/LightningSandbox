@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>LI_Escalation_Logo_Letter_Head</letterhead>
+    <name>Rental Suitability</name>
+    <style>freeForm</style>
+    <subject>Rental Suitability</subject>
+    <textOnly>Sincerely,
+
+Contact Center Specialist Supervisor/
+
+Liaison for L&amp;I
+
+
+
+
+
+Dear License Holder,
+
+A Certificate of Rental Suitability is available two business days after license issuance. Please try again at this time. Thank you for your patience and for your investment in the City of Philadelphia.
+
+Sincerely,
+
+Contact Center Specialist Supervisor/
+
+Liaison for L&amp;I</textOnly>
+    <type>html</type>
+</EmailTemplate>

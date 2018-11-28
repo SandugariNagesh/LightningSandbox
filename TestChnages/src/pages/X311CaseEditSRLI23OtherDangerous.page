@@ -1,0 +1,145 @@
+<apex:page standardcontroller="Case">
+
+    <apex:composition template="X311CaseEdit">
+        <apex:define name="typeSpecific">
+        
+        <script type="text/javascript">
+            onload = init();
+       
+       function othd1(data) {
+           if(data.value=="Yes" ) {
+             
+          if(confirm('Hot transfer the customer to 911')){
+           j$("[id*='caseComments']").val('Please call 911'); 
+               SaveAndServiceNotNeeded();
+             }  
+           }
+       }
+       
+        function othd2(data) {
+           if(data.value=="Yes" ) {
+             
+//          if(confirm('If the building is currently under  construction or demolition, submit a Construction Site Task Force service request')){ 
+          if(confirm('If the building is currently under construction or demolition, submit a Building Force service request')){ // FIX for SR#10848060
+               j$('[id*=departmnt]').val('License & Inspections');
+//               j$('[id*=caseRecordType]').val('Construction Site Task Force');
+               j$('[id*=caseRecordType]').val('Building Force'); // FIX for SR#10848060
+//               j$('[id*=SubjectForCase]').val('Construction Site Task Force');
+               j$('[id*=SubjectForCase]').val('Building Force'); // FIX for SR#10848060
+//               j$('[id*=sreq]').val('Construction Site Task Force');
+//               j$('[id*=sreq]').val('Building Force'); // FIX for SR#10848060  But it is not setting the SRT = Building Construction
+               j$('[id*=sreq]').val('Building Force');
+               rsChange();
+              //crts();
+           }
+       }
+    }
+    /*  Commenting as per new requirements Case Number 05012710   
+       function address() {
+           if(j$("[id $='hansenAddress']").val() == '' || j$("[id $='hansenAddress']").val() == Null ) {
+             
+          if(confirm('A zoning violation case can be submitted only if the exact L&I address key is validated.'))
+               SaveAndServiceNotNeeded();
+               
+           }
+       }*/
+      
+       
+           
+                  
+      </script>
+        
+            <apex:pageblocksection title="Service Request Information" showheader="true" collapsible="true" columns="2">
+            
+                
+                 <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Structure_Collapsing__c.inlineHelpText}">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.Structure_Collapsing__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                               <apex:inputfield value="{!Case.Structure_Collapsing__c}" StyleClass="RemoveNone" required="false" onchange="othd1(this)"  />
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>
+                     <apex:pageBlockSectionItem helpText="Is the structure vacant or occupied?">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.Vacant_or_Occupied__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                               <apex:inputfield value="{!Case.Vacant_or_Occupied__c}" StyleClass="RemoveNone" required="false"/>
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>
+                
+                  <!-- started for other dangerous picklist ADDED BY RAJU-->
+                  
+                      <apex:pageBlockSectionItem helpText="What is the Other Dangerous situation??">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.Other_Dangerous__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                               <apex:inputfield value="{!Case.Other_Dangerous__c}" StyleClass="RemoveNone" required="false"/>
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>
+                     
+               <!-- Ended picklist value  ADDED BY RAJU-->
+                
+                 <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Under_Construction_or_Demolition__c.inlineHelpText}">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.Under_Construction_or_Demolition__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                               <apex:inputfield value="{!Case.Under_Construction_or_Demolition__c}" StyleClass="RemoveNone" required="false" onchange="othd2(this)"  />
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>
+                     
+                     
+                      
+                            <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.L_I_District__c.inlineHelpText}">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.L_I_District__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                               <apex:inputfield value="{!Case.L_I_District__c}" required="false" id="liDistrict" />
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>
+                         
+                  
+                      <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Location_of_Dangerous_Condition__c.inlineHelpText}">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.Location_of_Dangerous_Condition__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                               <apex:inputfield value="{!Case.Location_of_Dangerous_Condition__c}" required="false"/>
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>
+                                        
+                              <!--commenting as per new requirements Case Number 05012710   
+                     <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.L_I_Address__c.inlineHelpText}">
+                     <apex:outputLabel value="{!$ObjectType.Case.Fields.L_I_Address__c.label}" /> 
+                    <apex:outputPanel >
+                        <div class='requiredInput'>
+                            <div class='requiredBlock'></div>
+                             <apex:inputfield value="{!Case.L_I_Address__c}" required="false" id="hansenAddress" onchange="address()"  /> 
+                         </div>
+                    </apex:outputPanel>  
+                     </apex:pageblocksectionitem>!-->
+                       <apex:inputfield value="{!Case.L_I_Address__c}" required="false" id="hansenAddress"/>
+                       <apex:inputfield value="{!Case.Citizen_Serve_Ticket__c}" StyleClass="RemoveNone" required="false"  />
+               
+               <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Transferred_To__c.inlineHelpText}">
+                             <apex:outputLabel value="{!$ObjectType.Case.Fields.Transferred_To__c.label}" /> 
+                                <apex:outputPanel >
+                                           <apex:inputfield value="{!Case.Transferred_To__c}" StyleClass="RemoveNone" required="false" onchange="cstf4(this)"/>                                     
+                                 </apex:outputPanel>  
+                         </apex:pageblocksectionitem>
+               
+                </apex:pageblocksection>     
+                
+        </apex:define>
+    </apex:composition>
+</apex:page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>City_of_Philadelphia_Logo_12_13_2017</letterhead>
+    <name>Barrio YE 12.13</name>
+    <style>freeForm</style>
+    <subject>“El Barrio es Nuestro” End of Year Review Meeting 12/18/2017 @ 5:30</subject>
+    <textOnly>Good Morning,
+Please join us at “El Barrio es Nuestro” End of Year Review meeting, Monday, December 18, 2017; 5:30 p.m. to 7:00 p.m. at Iglesia Del Barrio, 240 E.Cambria Street.
+
+Light hors-d&apos;oeuvres would be served
+
+Únase a nosotros a la reunión de Revisión de fin de año de &quot;El Barrio es Nuestro&quot;, lunes, 18 de diciembre de 2017; 5:30 pm - 7:00 p.m. en Iglesia Del Barrio, 240 E. Cambria Street.
+
+Se servirá aperitivos ligeros</textOnly>
+    <type>html</type>
+</EmailTemplate>

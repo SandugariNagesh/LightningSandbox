@@ -1,0 +1,14 @@
+Dear {!Case.User__c}, 
+
+Thank you for submitting your request. Please be advised that Support Case #{!Case.CaseNumber} has been closed. Please find the details below:
+
+Subject: {!Case.Subject}
+Description: {!Case.Description}
+
+For additional information related to the status of this case you may contact us via telephone by dialing 3-1-1 or 215-686-8686; or via email at Philly311@phila.gov. 
+
+Please note we are undergoing system upgrades and the above case number is not currently available for tracking online. We apologize for any inconvenience. 
+
+Regards, 
+{!Organization.Name} 
+Customer Support

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Community Engagement Meeting 10/24</name>
+    <style>freeForm</style>
+    <subject>SAVE THE DATE: October 24, 2017 - El Barrio es Nuestro Community Engagement Meeting</subject>
+    <textOnly>Dear Community Partners,
+
+
+We appreciate everyone&apos;s active participation and enthusiasm in working together to eradicate the blight, vandalism, and social ills affecting the quality of life in our community.
+
+Below you will find a brief questionnaire regarding your attendance to our next community meeting. Please take a few seconds to fill it out.
+
+Community Engagement Training
+
+
+Entrenamiento Comunitario
+
+
+We look forward to your participation.</textOnly>
+    <type>html</type>
+</EmailTemplate>

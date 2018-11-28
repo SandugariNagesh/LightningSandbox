@@ -1,0 +1,119 @@
+<apex:page standardcontroller="Case">
+
+    <apex:composition template="X311CaseEdit">
+        <apex:define name="typeSpecific">
+        
+            <script type="text/javascript">
+                onload = init();     
+            </script>
+        
+                 <apex:pageblocksection title="Service Request Information" showheader="true" collapsible="true" columns="2">
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Block_Party__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.Block_Party__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.Block_Party__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.What_time_of_day_is_the_ROW_blocked__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.What_time_of_day_is_the_ROW_blocked__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.What_time_of_day_is_the_ROW_blocked__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Moving_Van_Vehicle__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.Moving_Van_Vehicle__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.Moving_Van_Vehicle__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.What_time_is_work_being_done__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.What_time_is_work_being_done__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.What_time_is_work_being_done__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.What_is_being_blocked__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.What_is_being_blocked__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.What_is_being_blocked__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Name_of_the_company_doing_work__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.Name_of_the_company_doing_work__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.Name_of_the_company_doing_work__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.What_kind_of_work_is_being_done__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.What_kind_of_work_is_being_done__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.What_kind_of_work_is_being_done__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>  
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Is_there_a_permit_posted_on_location__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.Is_there_a_permit_posted_on_location__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.Is_there_a_permit_posted_on_location__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.Is_there_excavation__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.Is_there_excavation__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.Is_there_excavation__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>
+                    
+                    <apex:inputfield value="{!Case.Permit_Number__c}" StyleClass="RemoveNone" required="false"  />
+                    
+                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Case.Fields.How_long_has_the_ROW_been_blocked__c.inlineHelpText}">
+                        <apex:outputLabel value="{!$ObjectType.Case.Fields.How_long_has_the_ROW_been_blocked__c.label}" /> 
+                        <apex:outputPanel >
+                            <div class='requiredInput'>
+                                <div class='requiredBlock'></div>
+                                   <apex:inputfield value="{!Case.How_long_has_the_ROW_been_blocked__c}" StyleClass="RemoveNone" required="false"  />
+                             </div>
+                        </apex:outputPanel>  
+                    </apex:pageblocksectionitem>             
+                                     
+                </apex:pageblocksection>     
+                
+        </apex:define>
+    </apex:composition>
+</apex:page>

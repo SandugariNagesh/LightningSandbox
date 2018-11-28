@@ -1,0 +1,32 @@
+*** NEW CASE ASSIGNMENT NOTIFICATION FOR REDRESS CASE ***
+
+The following request has been submitted as a Redress to a previous service request that was closed by the Streets Department but reported to 311 as incomplete.  Please investigate to determine current status and follow up promptly.
+
+Redress Case
+
+Streets ID #: {!Case.Streets_Request_ID__c}
+Case #: {!Case.CaseNumber} 
+Date/Time Open: {!Case.CreatedDate}
+Request Type: {!Case.Service_Request_Type__c}
+Comments: {!Case.Description}
+Address: {!Case.Street__c}
+Contact Name: {!Contact.Name} 
+Contact Number: {!Contact.Phone}
+Email Address: {!Contact.Email}
+District Info:
+
+Original Case
+
+Original Streets ID #: {!Case.Redressed_Street_Request_Id__c} 
+Original Case #: {!Case.Parent} 
+Date/Time Open: {!Case.Redressed_Case_Date_Time_Open__c} 
+Comments:{!Case.Redressed_Case_Comments__c} 
+Case Resolution:{!Case.Redressed_Case_Reason__c} 
+
+Click on the respective link to access the case: 
+Internal Users: {!Case.Link} 
+Partner Users: https://philly.force.com/internal/{!Case.Id} 
+
+Thank you, 
+Philly311 
+Customer Support

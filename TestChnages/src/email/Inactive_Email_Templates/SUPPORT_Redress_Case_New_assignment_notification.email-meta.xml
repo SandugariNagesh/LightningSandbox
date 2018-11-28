@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>STREETS: Internal notification to Case Owner when case is reopened as Redress-Common template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: Redress Case New assignment notification</name>
+    <style>none</style>
+    <subject>REDRESS CASE --- Streets ID # {!Case.Streets_Request_ID__c}: {!Case.Service_Request_Type__c} at {!Case.Street__c} .</subject>
+    <type>text</type>
+</EmailTemplate>

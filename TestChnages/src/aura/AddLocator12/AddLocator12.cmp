@@ -1,0 +1,45 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+  <!-- JavaScript: Vendor -->
+  <ltng:require scripts="/resource/lightJS/jquery-3.3.1.min.js" />
+    <ltng:require scripts="/resource.lightJS/lodash.min_light.js" />
+    <ltng:require scripts="/resource.lightJS/leaflet_light.js" />
+  <ltng:require scripts="/resource/lightJS/esri-leaflet2.1.4_light.js" />
+    <ltng:require scripts="/resource/lightJS/async.min.js" />
+    <ltng:require scripts="/resource/lightJS/proj4.js" />
+    <ltng:require scripts="/resource/lightJS/oms.min.js" />
+    <ltng:require scripts="/resource/lightJS/raven.min.js" />
+  
+
+  <!-- JavaScript: Local -->
+    <ltng:require scripts="/resource/GisConfigJs_light" />
+    <ltng:require scripts="/resource/GisAppJs_light3.js" /> 
+    <ltng:require scripts="/resource/GisMapJs_light" />	
+  <div id="container">
+    <div id="search-bar">
+      <div id="search-input-container">
+        <input id="search-input" placeholder="Enter an address to search for"/>
+        <button id="search-button" class="search-button">Locate</button>
+      </div>
+
+      <div id="search-status">
+        <span id="search-spinner" class="fa fa-spinner fa-lg fa-pulse"></span>
+        <span id="search-action"></span>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="multiple-results-modal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h1>Your search had multiple results.</h1>
+        <p>Please choose one of the following addresses:</p>
+        <select></select>
+        <button class="search-button">Locate</button>
+      </div>
+    </div>
+
+  </div>
+
+
+</aura:component>

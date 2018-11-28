@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Thank you</name>
+    <style>freeForm</style>
+    <subject>El Barrio es Nuestro</subject>
+    <textOnly>Good day,
+
+
+I would like to take a moment to thank everyone for your participation and ongoing collaboration with the &quot;Gurney Street Project&quot;. Over the past year your contributions with planning and support on various projects are commended. Because of your hard work and dedication we were able to begin with the Conrail clean-up, as well as, making the “Social Services Hub” a success. A true example of effective and efficient governance and I&apos;m extremely proud of the interdepartmental collaboration. I thank you and appreciate each and everyone of you. This cluster has lead this project and your team members have been exceptional- doing whatever it takes and I could not be more proud to lead such an incredible team.
+
+
+Here is a brief update of services provided.
+
+
+· Keystone First facilitated over 60+ blood pressure screenings
+
+
+· Congreso and Kensington Hospital conducted a total of 78 HIV test and 44 Hepatitis C test
+
+
+· 50 total treatment service referrals completed (this count only reflects the A &amp; Tusculum location)
+
+
+· Over 300 lunches/snacks were distributed through the Salvation Army
+
+
+Thank you for making The Gurney Street Project a priority and doing your part to improve our Fairhill and West Kensington community and supporting individuals struggling with addiction. I am aware of the limited resources and despite the obstacles you made it work.
+
+
+A brief update on Conrail. Conrail has made much progress with the task of cleaning the railroad tracks over the past two days. You may have even noticed clear site lines beginning to emerge between the brush. In the next two days, Conrail will be working between Mascher and Front Streets on the south side of the tracks. There will be ongoing services provided at the trailer located on A and Tusculum trailer during the duration of the clean up. Conrail will also begin the fence work between B and Gurney, as well as, on Tusculum street.
+
+
+Once again, GRACIAS, for your ongoing dedication to serving our community combat the biggest health crisis attacking our city. Great team work!
+
+
+
+Gracias - Joanna</textOnly>
+    <type>html</type>
+</EmailTemplate>

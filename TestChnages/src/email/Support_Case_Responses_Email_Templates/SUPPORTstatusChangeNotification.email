@@ -1,0 +1,19 @@
+*** STATUS CHANGE NOTIFICATION *** 
+
+The status of the following case has been changed.  Please process accordingly if additional action is needed.  For more details related to this case click {!Case.Link}.
+
+Status Changed to: {!Case.Status}
+
+Case #: {!Case.CaseNumber} 
+
+Original Issue Reported: {!Case.Subject} 
+
+Case Details: {!Case.Description} 
+
+Should you have trouble accessing this case contact 311ITSupport@phila.gov.  Please include the case number and issue you are having.
+
+
+Regards,
+
+Philly311 
+Customer Support

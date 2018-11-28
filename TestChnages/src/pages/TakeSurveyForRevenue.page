@@ -1,0 +1,102 @@
+<apex:page standardcontroller="RevenueSurvey__c" extensions="RevenueViewSurveyController" cache="false" sidebar="false" showheader="false">
+
+<script type="text/javascript">
+   function changeTextArea(data){
+       if(data.value == 5) {
+           callActionChangeTextArea(data.checked );   
+       } 
+       else {
+           callActionChangeTextArea('false');
+       } 
+   }  
+  </script>
+
+<div id="survey_container">   
+    <apex:form id="theForm"   >
+    <apex:actionFunction action="{!isOtherSelect}" name="JSfucOther" reRender="Othertext2" />
+    <apex:outputPanel id="seeSurvey" rendered="{!thankYouRendered == false}">
+        <apex:outputField value="{!RevenueSurvey__c.Survey_Header__c}"/>
+        <h1><apex:outputField value="{!RevenueSurvey__c.Name}" rendered="{!RevenueSurvey__c.Hide_Survey_Name__c == false}" /></h1>
+        
+    </apex:outputPanel>
+
+    <apex:pageMessages />
+    <apex:pageBlock rendered="{!thankYouRendered == false}" > 
+        <div id="qList">
+            
+            <apex:repeat value="{!allQuestions}" var="qPreview" id="aQPreview">
+    
+                <div id="{!qPreview.id}" >
+                        <apex:pageBlock id="pblock"> 
+                            <h1 class="question">
+                                <span class="questionNumber">{!qPreview.orderNumber}</span>
+                                {!qPreview.question}
+                                <apex:outputPanel rendered="{!qPreview.required}" styleClass="requiredText">
+                                    ({!$Label.LABS_SF_Required})
+                                </apex:outputPanel>
+                            </h1>
+                         <div id="radio"> 
+                          <apex:selectRadio layout="pageDirection" rendered="{!qPreview.renderSelectRadio}" value="{!qPreview.selectedOption}">
+                            <apex:selectOptions value="{!qPreview.singleOptions}"/>
+                          </apex:selectRadio>
+                          </div>
+                          <div id="radio1"> 
+                              <apex:selectRadio rendered="{!qPreview.renderSelectsinglepick}" value="{!qPreview.selectedOption}" onchange="changeTextArea(this);">
+                                  <apex:selectOptions value="{!qPreview.rowOptions }"/>
+                              </apex:selectRadio>
+                              <!--<apex:outputLabel rendered="{!qPreview.renderSelectsinglepick}" >if 'Other' selected</apex:outputLabel>  -->
+                              <apex:pageBlockSection >
+                                  <apex:inputTextarea cols="50" label="If 'Other' selected" rows="5" id="Othertext" value="{!OthersResponse}" disabled="{!(!OtherTextAreaflag)}" rendered="{!qPreview.renderSelectsinglepick}" />
+                              </apex:pageBlockSection>
+                          </div>
+                        <div id="checkbox">           
+                          <apex:selectCheckboxes layout="pageDirection" rendered="{!qPreview.renderSelectCheckboxes}" value="{!qPreview.selectedOptions}" onchange="changeTextArea(this);">
+                            <apex:selectOptions value="{!qPreview.multiOptions}"/>
+                          </apex:selectCheckboxes>
+                        </div>
+                        <div id="text"> 
+                           <apex:inputTextArea cols="50" rows="10" rendered="{!qPreview.renderFreeText}" value="{!qPreview.choices}"/>  
+                        </div>
+                        <div id="row">
+                          <apex:selectRadio rendered="{!qPreview.renderSelectRow}" value="{!qPreview.selectedOption}">
+                            <apex:selectOptions value="{!qPreview.rowOptions}"/>
+                          </apex:selectRadio>
+    
+                        </div>            
+                        <!-- IN ORDER TO ADD A QUESTION TYPE YOU MUST CHANG THE JAVASCRIPT BELOW AS WELL -->
+                        </apex:pageBlock>   
+                  
+                    </div>  <!-- qPreview.id -->        
+                </apex:repeat>
+                
+            <apex:actionFunction name="callActionChangeTextArea" reRender="Othertext" action="{!changeOtherTextAreaFlag}">
+                <apex:param value="" name="flagValue"/>
+            </apex:actionFunction>
+                                                           
+        </div> <!-- qList -->
+        
+    </apex:pageBlock>
+        <apex:outputPanel rendered="{!thankYouRendered == false}">
+        <apex:outputPanel rendered="{!isInternal}" >
+            {!$Label.LABS_SF_Answer_as}: 
+            <apex:selectRadio value="{!anonymousAnswer}">
+                <apex:selectOptions value="{!anonymousOrUser}" />
+                <apex:actionSupport event="onselect" rerender="hiddenAnonymousAnswer"/>
+            </apex:selectRadio>
+            <apex:inputHidden value="{!anonymousAnswer}" id="hiddenAnonymousAnswer"/>
+            <BR />
+        </apex:outputPanel>
+        <apex:commandButton action="{!submitResults}" value="{!$Label.LABS_SF_SubmitSurvey}" rerender="theForm,seeSurvey" />
+    </apex:outputPanel>
+        <apex:outputPanel rendered="{!thankYouRendered == true}">
+   
+       <apex:outputText value="{!surveyThankYouText}"  escape="false"  />
+
+        </apex:outputPanel>  
+    </apex:form>
+
+
+    
+
+</div>
+</apex:page>

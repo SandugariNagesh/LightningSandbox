@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>LI_Escalation_Logo_Letter_Head</letterhead>
+    <name>LI Error on Certificate of Rental</name>
+    <style>freeForm</style>
+    <subject>Error on Certificate of Rental</subject>
+    <textOnly>Dear License Holder,
+
+The error has been corrected and the Certificate of Rental Suitability may now be generated. We apologize for the inconvenience and thank you for your patience.
+
+Please reply to this email if you experience any further issues related to this.
+
+Sincerely,
+Customer Care Staff
+Department of L &amp; I</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+****Emergency Case Alert**** 
+
+Based on the nature of your request case # {!Case.CaseNumber} for {!Case.Service_Request_Type__c} at {!Case.Street__c} it has been updated to an Emergency situation. 
+
+You may track the status of this case on our website at http://www.phila.gov/311 using the case number provided, by dialing 3-1-1 or 215-686-8686 or via email at Philly311@phila.gov. 
+
+Thank you for reporting this issue.
+
+Regards, 
+
+{!Organization.Name} 
+Customer Support

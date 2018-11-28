@@ -1,0 +1,15 @@
+Dear {!Contact.FirstName},
+
+Your {!Organization.Name} partner portal login and password information is below.
+
+To log in go to: 
+
+{!Community_Url} 
+
+If you did not request this change, please contact us. 
+
+Regards, 
+
+{!Organization.Name} 
+Customer Support
+Thank you,

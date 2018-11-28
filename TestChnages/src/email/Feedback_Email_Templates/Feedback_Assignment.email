@@ -1,0 +1,10 @@
+{!User.Name} has assigned {!Feedback__c.Name} to you.  
+
+Organization : 
+{!Organization.Name} on behalf of {!Feedback__c.Organization_Name__c} 
+
+Feedback Link: 
+{!Feedback__c.Link}
+
+Description:
+{!Feedback__c.Description__c}

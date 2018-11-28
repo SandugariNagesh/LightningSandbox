@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Gurney Street Newsletter JAN-2018</name>
+    <style>none</style>
+    <subject>January Kensington-Fairhill Community Meeting</subject>
+    <textOnly>CITY OF PHILADELPHIA
+
+Join El Barrio es Nuestro in Kensington-Fairhill on January 20th
+
+
+On January 20th, El Barrio es Nuestro (the Neighborhood is Ours) will host a community meeting to provide important updates about the latest efforts to meaningfully address the challenges in the Kensington-Fairhill neighborhoods.
+
+This meeting with feature presentations from various City departments and community partners about the steps being taken to confront neighborhood challenges, including the opioid epidemic, homelessness and public safety as well as other community concerns.
+
+City departments and agencies that will be represented at the meeting include the Police Department, Managing Director&apos;s Office, Office of Homeless Services and Department of Public Health as well as others.
+
+WHEN: Saturday, January 20th, 2018, 10AM-1PM
+
+WHERE: Salvation Army, 3150 N Mascher St, Philadelphia, PA
+
+Members of the community are encouraged to register for the meeting by calling the Office of Community Services at 215-686-6313.
+
+
+Together, we will bring lasting, positive change to West Kensington and Fairhill.</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Gurney Community Meeting 8/22</name>
+    <style>freeForm</style>
+    <subject>El Barrio es Nuestro Community Meeting 8/22/17</subject>
+    <textOnly>Good Morning,
+
+
+We are now into week three of Conrail’s Clean-Up and the physical environment in the community is transformational. Visit our facebook page for recent photos #El Barrio es Nuestro.
+
+
+We continue to work with various social service providers in an effort to meet the needs of individuals afflicted by the opioids, the RV is stationed on A and Tusculum Streets. The Homelessness outreach team is actively canvassing the area and transporting individuals as needed. Beginning on Monday, August 21, there will be rotating provider agencies onsite at RV providing behavioral health screening/referral services to individuals seeking treatment. Screenings includes: education on SUD prevention, treatment and care. Through the assessment process providers identify additional needs including: ID’s, insurance, housing, basic needs, and medical needs. The RV’s hours of operation are Monday-Friday, 9:00am-4:00pm.
+
+
+Here is a brief summary on data:
+
+
+Streets department has transported 15 loads = 252.70 tons of debris to landfill in the past three days
+Keystone First facilitated over 60+ blood pressure screenings
+Congreso and Kensington Hospital conducted a total of 78 HIV tests and 44 Hepatitis C tests
+141 encounters by outreach workers, and 50 total treatment service referrals completed
+The Salvation Army distributed over 750 lunches/snacks
+
+
+To receive more updates on the Conrail, clean up, please join us at our next “EL Barrio es Nuestro” meeting: (Flier attached)
+
+
+Date: August 22, 2017
+
+Time: 5:30pm-7:00pm
+
+Location: HACE
+
+200 E Somerset Street,
+
+Philadelphia, PA 19134
+
+
+Resource Numbers:
+
+Homeless Outreach line at any time: 215-232-1984
+
+
+Drug treatment and detox available.
+
+People who do not have medical insurance should contact the Behavioral Health Special Initiative (BHSI) at 215-546-1200, Monday through Friday, between the hours of 8:30 a.m. and 4:30 p.m. If they have medical assistance or Medicaid, they should contact Community Behavioral Health (CBH) at 888-545-2600.
+
+
+Report a problem or solicit a service:
+
+Contact Philly311 at 311 or via mobile “PHILLY 311”
+
+
+Community Events:
+
+
+Philadelphia More Beautiful Committee Cleanup
+
+August 12, 2017 District 5, 14, 35 and 39
+
+August 19, 2017 District 24 and 25
+
+
+Inter-faith Peach March
+
+August 19, 2017 7:00pm
+
+The Free Church of St. John
+
+3076 Emerald Street 19134</textOnly>
+    <type>html</type>
+</EmailTemplate>

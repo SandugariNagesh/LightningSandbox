@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Unsafe Condition Email Alert for parks and Rec Safety Service Request Type</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: UnsafeServiceRequest</name>
+    <style>none</style>
+    <subject>Your case {!Case.CaseNumber}, {!Case.Service_Request_Type__c} has been updated</subject>
+    <type>text</type>
+</EmailTemplate>

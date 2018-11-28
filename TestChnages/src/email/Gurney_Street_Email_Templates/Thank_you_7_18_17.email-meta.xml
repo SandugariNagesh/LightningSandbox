@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Thank you 7-18-17</name>
+    <style>freeForm</style>
+    <subject>El Barrio es Nuestro Community Meeting 7/18/17</subject>
+    <textOnly>Thank you for joining us on July 18, 2017, for “El Barrio es Nuestro” community meeting. We appreciate everyone&apos;s active participation and enthusiasm in working together to eradicate the blight, vandalism, and social ills affecting the quality of life in our community.  There was great energy and we look forward to continuing to work with you.
+
+
+
+Save the Date
+
+El Barrio es Nuestro Meeting
+
+Date: August 22, 2017
+
+Time: 5:30 -7:30pm
+
+Location: HACE
+
+Somerset Villas
+200 E. Somerset Street.
+Philadelphia, PA. 19134
+
+
+
+We look forward to your participation in our the next meeting</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Knowledge Base article requested by customer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: Case Response with Article</name>
+    <style>none</style>
+    <subject>Your Information Request for {!Case.Service_Request_Type__c}; Case {!Case.CaseNumber}:</subject>
+    <type>text</type>
+</EmailTemplate>

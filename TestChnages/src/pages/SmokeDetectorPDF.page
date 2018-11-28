@@ -1,0 +1,170 @@
+<apex:page renderAs="pdf" standardController="Case"
+    title="{!case.CaseNumber}" extensions="PdfTemplateController"
+    contentType="application/pdf">
+    <apex:outputPanel title="311 - Smoke Detector Complaint">
+        <html>
+<table width="100%" border="1"
+    style="border-style: solid; border-width: 2px;" cellspacing="1">
+    <tr>
+        <td>
+            <table width="100%" border="0">
+                <tr>
+                    <td><apex:image value="{!$Resource.HomelandPic}" width="75"
+                            height="75" /></td>
+                    <td><header style="font-family: Dialog; font-size: 16pt;">
+                            PHILADELPHIA FIRE DEPARTMENT
+                           <br>
+                           SMOKE ALARM INSTALLATION RECORD </br> </header> </td>
+                    <td>
+                    <apex:image value="{!$Resource.Firedepartmentpic}" width="75"
+                            height="75" /></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<div style="font-family: Dialog; font-size: 10pt;">
+    <table width="100%" border="1" cellpadding="13px">
+
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width="20%"><apex:outputLabel >DATE:</apex:outputLabel>
+            </td>
+            <td width="12.5%"><apex:outputLabel >Ladder Local:</apex:outputLabel></td>
+            <td width="12.5%"><apex:outputLabel >Engine Local:</apex:outputLabel></td>
+            <td width="30%"><apex:outputLabel >OFFICER: </apex:outputLabel></td>
+            <td width="20%"><apex:outputLabel >Service Request Number#:</apex:outputLabel></td>
+        </tr>
+
+        <tr style="font-family: Dialog; font-size: 11pt;">
+            <td>{!date}</td>
+            <td><apex:outputField value="{!case.Ladder_Local__c}" /></td>
+            <td><apex:outputField value="{!case.Engine_Local__c}" /></td>
+            <td></td>
+            <td><apex:outputField value="{!case.CaseNumber}" /></td>
+        </tr>
+        </table>
+         <table  width="100%" border="1" cellpadding="13px">
+        <tr width="100%" style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width = "25%" colspan="1"><apex:outputLabel >Customer Name:</apex:outputLabel></td>          
+            <td width = "30%" colspan="2"><apex:outputLabel >Address (EXACT LOCATION): </apex:outputLabel></td>           
+            <td width = "20%" colspan="3"><apex:outputLabel >Phone/Mobile:</apex:outputLabel></td> 
+            <td width = "25%" colspan="4"><apex:outputLabel >Email: </apex:outputLabel></td>         
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+             <td  colspan="1"><apex:outputField value="{!case.ContactId}"/> </td>
+             <td  colspan="2"><apex:outputField value="{!case.Street__c}"/> </td>
+             <td  colspan="3"><apex:outputField value="{!case.Contact_Phone__c}"/> </td>
+             <td  colspan="4"><apex:outputField value="{!case.Contact.Email}"/> </td>
+        </tr>
+       
+    </table>
+    <table border="1" width="100%" cellpadding="15px">
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td><apex:outputLabel ># Of ADULTS: </apex:outputLabel></td>
+            <td><apex:outputLabel ># OF ADULTS OVER 65:</apex:outputLabel></td>
+            <td><apex:outputLabel ># OF CHILDREN BELOW 18: </apex:outputLabel></td>
+            <td><apex:outputLabel >TIME:  </apex:outputLabel></td>
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+             <td></td>
+              <td></td>
+               <td></td>            
+            <td><apex:outputField value="{!case.Body_Style__c}" /></td>
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding="12px">
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width="50%"><apex:outputLabel >FIRE PREVENTION EDUCATION PERFORMED: </apex:outputLabel></td>
+            <td width="50%"><apex:outputLabel >ANY SPECIAL NEEDS IN RESIDENCE: </apex:outputLabel></td>
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <p align="center"> <b>  NO ALARMS INSTALLED (ADDITIONAL INFORMATION BELOW) </b> </p>
+    <table border="1" width="100%">
+  
+            <td>
+                <table cellspacing="10px">
+                  
+                    <tr><td>1st ATTEMPTED DATE: __________________________ Outcome: _____________________________</td></tr>
+                    <tr><td>2nd ATTEMPTED DATE: __________________________ Outcome: _____________________________</td></tr>                                      
+                    <tr><td>3rd ATTEMPTED DATE: __________________________ Outcome: _____________________________</td></tr>
+                </table>
+            </td>
+    </table>
+     <p align="center"> <b> ALARMS INSTALLED (ALL MUST BE LISTED) </b> </p>
+ <table width="100%" border="1" cellpadding="12px">
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width="50%"><apex:outputLabel >FIRE PREVENTION EDUCATION PERFORMED: </apex:outputLabel></td>
+            <td width="50%"><apex:outputLabel >ANY SPECIAL NEEDS IN RESIDENCE: </apex:outputLabel></td>
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+            <td></td>
+            <td></td>
+          
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding="12px">
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width="50%"><apex:outputLabel ></apex:outputLabel></td>
+            <td width="50%"><apex:outputLabel > </apex:outputLabel></td>
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+            <td></td>
+            <td></td>
+          
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding="12px">
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width="50%"><apex:outputLabel > </apex:outputLabel></td>
+            <td width="50%"><apex:outputLabel > </apex:outputLabel></td>
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+            <td></td>
+            <td></td>
+          
+        </tr>
+    </table>
+    </div>
+     <p> <i> <br> Maintain completed records at the station. Enter information into the SharePoint database. </br> </i> 
+  <i>  File original document in Fire Prevention File at station and place duplicate in Daily Station Log. </i>  </p> 
+    <table width="100%" border="1" cellpadding="12px">
+        <tr style="font-family: Courier; font-size: 9pt; text-align: left;">
+            <td width="50%"><apex:outputLabel >DATE/TIME: </apex:outputLabel></td>
+            <td width="50%"><apex:outputLabel >COMPLETED BY:</apex:outputLabel></td>
+        </tr>
+        <tr style="font-family: Dialog; font-size: 11pt;">
+            <td></td>
+            <td></td>
+          
+        </tr>
+    </table>
+    
+    <br>
+    </br>
+    
+    <p align="center"> <b> SMOKE ALARM INSTALLATION FORM </b> </p>
+ 
+    <p> 
+   <div> <br> I, _______________________________________________________________________ </br> </div>
+<div><br> (The Homeowner) desire to allow an individual representing the Federal Emergency Management Agency (FEMA) or City of Philadelphia ("City") to enter my home to install smoke alarms. </br></div>
+<div><br> In consideration of receiving these services, at no cost, I, for myself, my heirs, successors, personal administrators, executors and assign, hereby waive, release and forever discharge any and all actions, causes of action, suits, claims and demands whatsoever at law or in equity I may have now and hereafter arising against the FEMA, the City, its representatives, employees, officers or agents.</br></div>
+<div><br> I acknowledge and accept that the FEMA and the City is not the designer, manufacturer, supplier, inspector or guarantor of the smoke alarm nor are they responsible for any equipment defects, changing of batteries or performing any maintenance or service beyond installation.
+ I agree that the FEMA and the City assumes no risk, and shall be subject to no liability for, any injuries, including death, damages or loss resulting from the installation, operation or use of the smoke alarms. 
+ I hereby agree to hold harmless the the FEMA, the City, its representatives, employees, officers or agent from any responsibility, claim or obligation with respect to its services or the installation, use or operation of the smoke alarm.</br></div>
+<div><br> I acknowledge that it is my sole responsibility to complete and register the warranty and/or other material provided with the smoke alarm and to use the smoke alarm in accordance with the instructions provided by the manufacturer.</br> </div>
+<div><br> I voluntarily assume all risks of loss, damage, and all injuries (including personal injury, disability and death) that may be sustained whether said injury or damage may be due to the act, omission or negligence of the FEMA, the City, its representatives, or its respective employees, officers or agents or otherwise.</br></div>
+<div><br> Further I hereby voluntarily and without compensation authorize the use of my visual images and/or voice recordings by or on behalf of the FEMA or the City during the installation of the smoke alarms in my home.
+ I also authorize the FEMA, the City and its representative to reproduce, publicize, broadcast and display any such visual images or voice recordings, with or without my name, without notice or payment of any royalty, fee or other compensation for any use of my image, name or voice.</br></div>
+<div><br> I HAVE READ AND UNDERSTAND THIS RELEASE OF LIABILITY AND I HEREBY AFFIX MY SIGNATURE IN ACKNOWLEDGEMENT OF SUCH. IN WITNESS WHEREOF, I HAVE SET MY HAND HERE UNTO THIS RELEASE.</br></div>
+<div><br> Print Name___________________________________________________________</br></div>
+<div><br> Signature____________________________________________________________</br></div>
+  
+    </p>
+    
+ </html>
+</apex:outputpanel>
+</apex:page>

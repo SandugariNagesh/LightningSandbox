@@ -1,0 +1,546 @@
+<!-- 311GISMap is used for getting the user input address and locating it on the map -->
+
+<apex:page showHeader="false" sidebar="false" controller="X311GISConnectorClr">
+    <!-- Use lodash for array utilities -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/async/2.5.0/async.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!--  Use Proj4.js for transforming geographic coordinates -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.3/proj4.js"></script>
+
+    <!-- TODO take out placeholder value -->
+    <!--<input id="address" type="text" value="1234 market st"/>
+    <button id="locate" onclick="handleLocateButtonClick();">locate</button>
+    <button onclick="window.addLayer();">add layers</button>-->
+    
+    <div id="multiple" style="display:none">
+        There are similar addresses. Please select one from the list
+        <span id="list">
+            <select id="selectAddress">
+
+            </select>
+            <button id="locate" onclick="handleLocateButtonClickMultiple()">locate</button>
+        </span>
+    </div>
+
+    <script>
+        window.$$ = $.noConflict();
+        
+        /* AIS */
+        
+        // listen for 'enter' key on address input
+        $$("input#address").on('keyup', function (e) {
+            if (e.keyCode == 13) {
+                handleLocateButtonClick();
+            }
+        });
+
+        // configure proj4 to use local state plane projection
+        proj4.defs('EPSG:2272', '+proj=lcc +lat_1=40.96666666666667 +lat_2=39.93333333333333 +lat_0=39.33333333333334 +lon_0=-77.75 +x_0=600000 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs ');
+
+        // helper fn to convert a string to camel case
+        // https://stackoverflow.com/a/4068586/676001
+        function toCamelCase(s) {
+            return s.replace(
+                /\w+/g,
+                function (w) { return w[0].toUpperCase() + w.slice(1).toLowerCase(); }
+            );
+        }
+
+        // handle clicks to the locate button
+        function handleLocateButtonClick(e) {
+            actionStatusOn('Validating address...');
+            $$('#multiple').css('display','none');
+            var inputAddress = document.getElementById('address').value;
+            fetchAis(inputAddress);
+        }
+        
+        // handle clicks to the locate button in the multiple result selector
+        function handleLocateButtonClickMultiple(e) {
+            var selected = $$('#selectAddress').val();
+            
+            console.log('did select from multiple:', selected);
+            
+            fetchAis(selected);
+        }
+
+        // this function gets user input and queries the Address Information System. this is
+        // intended to replace the Address Candidate function.
+        function fetchAis(inputAddress) {
+            console.log("fetch ais:", inputAddress);
+            
+            var url = 'https://api.phila.gov/ais/v1/addresses/' + encodeURIComponent(inputAddress);
+            
+            $$.ajax({
+                url: url,
+                data: {
+                    include_units: true,
+                    opa_only: true,
+                    gatekeeperKey: 'cb076d7301c315ba0f039b8f7744ac6d',
+                },
+                success: didFetchAis,
+                error: didNotFetchAis,
+            });
+        }
+        
+        // on successful ais fetch
+        function didFetchAis(data) {
+            console.log('did fetch ais', data);
+            
+            actionStatusOff();
+            
+            // check number of results
+            var features = data.features,
+                resultCount = Array.isArray(features) ? features.length : 0;
+            
+            if (resultCount === 1) {
+                var feature = features[0];
+                didGetValidAddress(feature);
+                                
+            // if we got multiple results 
+            } else if (resultCount > 1) {           
+                // show dropdown
+                populateMultipleResultDropdown(features);
+                
+            // if we got no results
+            } else {
+                console.log('ais successful but no features');
+                alert('Could not locate that address. Please try another search.');
+            }
+        }
+        
+        // on unsuccessful ais fetch
+        function didNotFetchAis(jqXHR, textStatus, errorThrown) {
+            console.log('error fetching ais:', errorThrown, jqXHR);
+            
+            actionStatusOff();
+            
+            alert('Error while validating address: ' + errorThrown);
+        }
+        
+        function populateMultipleResultDropdown(features) {
+            var $select = $$('#selectAddress');
+            
+            $select.empty();
+            
+            _.each(features, function (feature) {
+                console.log('feature', feature);
+                var address = feature.properties.street_address;
+                var $opt = $$('<option>')
+                                .text(address)
+                                .val(address);
+                $select.append($opt);
+            });
+            
+            $$('#multiple').show();
+        }
+        
+        function didGetValidAddress(feature) {
+            console.log('did get valid address', feature);
+            
+            var coords = feature.geometry.coordinates,
+                x = coords[0],
+                y = coords[1],
+                address = feature.properties.street_address;
+            
+            // add marker and zoom
+            MAP.addGeocodeMarker(x, y, address);
+            MAP.zoomTo(x, y);
+            
+            // get "related" cases (recent, nearby cases with the same record type)
+            var recordTypeId = window.opener && window.opener.RECORD_TYPE_ID;
+            
+            // DEBUG: if no parent window, use record type id for Dangerous Sidewalk
+            if (!recordTypeId) recordTypeId = '012G00000014Gt6IAE';
+            
+            fetchRelated(recordTypeId, x, y);
+            
+            // fetch layer info
+            var layerInfo = fetchLayerInfo_(feature, null, function () {
+                console.log('did fetch layer info');
+            });
+        }
+        
+        // configure query layers
+        var QUERY_LAYERS = {
+                //address: {
+                //    type: 'esri',
+                //    url: '//gis.phila.gov/arcgis/rest/services/PhilaGov/Addresses/MapServer/0',
+                //    options: {
+                //        where: function (feature) {
+                //            return "ADDRESS = '" + feature.properties.street_address + "'";
+                //        }
+                //    }
+                //},
+                // REVIEW do we still need this now that there's a separate query for demo permits?
+                //buildingPermit: {
+                //    type: 'where',
+                //    endpoint: 'PhilaGov/Construction/MapServer/18',
+                //    options: {
+                //        where: function (feature) {
+                //            return 'ADDRKEY = ' + feature.properties.li_address_key;
+                //        }
+                //    }
+                //},
+                //businessLicense: {
+                //    type: 'where',
+                //    endpoint: 'PhilaGov/Business/MapServer/8',
+                //    options: {
+                //        where: function (feature) {
+                //           return 'ADDRKEY = ' + feature.properties.li_address_key;
+                //        }
+                //   }
+                //},
+                //district: {
+                //    type: 'intersects',
+                //    endpoint: 'PhilaGov/ServiceAreas/MapServer/19',
+                //    options: {
+                //        //TODO
+                //    }
+                //},
+                    demoPermit: {
+      type: 'esri',
+        url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_PERMITS/FeatureServer/0',
+        options: {
+            where: function (feature) {
+                return "ADDRESSKEY = '" + feature.properties.li_address_key + "' AND PERMITTYPE = 'BP_DEMO'";
+            }
+        }
+    },
+        dumpsterPrivate: {
+          type: 'esri',
+          url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_BUSINESS_LICENSES/FeatureServer/0',
+          options: {
+            where: function (feature) {
+              return "ECLIPSE_ADDRESSOBJECTID = '" + feature.properties.eclipse_location_id + "' AND REVENUECODE = '3230'";
+            },
+          },
+        },
+        familyDaycare: {
+          type: 'esri',
+          url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_BUSINESS_LICENSES/FeatureServer/0',
+          options: {
+            where: function (feature) {
+              return "ECLIPSE_ADDRESSOBJECTID = '" + feature.properties.eclipse_location_id + "' AND REVENUECODE = '3397'";
+            },
+          },
+        },
+        foodLicense: {
+            type: 'esri',
+            url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_BUSINESS_LICENSES/FeatureServer/0',
+            options: {
+                where: function (feature) {
+                    return "ECLIPSE_ADDRESSOBJECTID = '" + feature.properties.eclipse_location_id + "' AND REVENUECODE = '3118'";
+                }
+            }
+        },
+        healthCenter: {
+            type: 'esri',
+            url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/Health_Centers/FeatureServer/0',
+            options: {
+                where: function (feature) {
+                  // note: this layer doesn't have standardized addresses, so there's no
+                  // guarantee this query will work. adding some logic to improve matching.
+                  return "UPPER(FULL_ADDRESS) LIKE '" + feature.properties.street_address + "%'";
+                }
+            }
+        },
+        hospital: {
+            type: 'esri',
+            url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/Hospitals/FeatureServer/0',
+            options: {
+                where: function (feature) {
+                  return "UPPER(ADDRESS) LIKE '" + feature.properties.street_address + "%'";
+                }
+            }
+        },
+                rentalLicense: {
+        type: 'esri',
+        url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_BUSINESS_LICENSES/FeatureServer/0',
+        options: {
+            where: function (feature) {
+                return "ECLIPSE_ADDRESSOBJECTID = '" + feature.properties.eclipse_location_id + "' AND REVENUECODE = '3202'";
+            }
+        }
+    },
+     rentalViolation: {
+        type: 'esri',
+        url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_VIOLATIONS/FeatureServer/0',
+        options: {
+            where: function (feature) {
+                return "ADDRESSKEY = '" + feature.properties.li_address_key + "' AND VIOLATIONTYPE like 'PM-102%'";
+            }
+        }
+    },
+
+      vacancy: {
+        type: 'esri',
+        url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_BUSINESS_LICENSES/FeatureServer/0',
+        options: {
+            where: function (feature) {
+                return "ECLIPSE_ADDRESSOBJECTID = '" + feature.properties.eclipse_location_id + "' AND REVENUECODE = '3219'";
+            }
+        }
+    },
+    violationProperty: {
+        type: 'esri',
+        url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_VIOLATIONS/FeatureServer/0',
+        options: {
+            where: function (feature) {
+                return "ADDRESSKEY = '" + feature.properties.li_address_key + "' and STATUS IS NULL";
+            }
+        }
+    },
+
+                // using ais to get zoning
+                //zoningBaseLayers: {
+                //    type: 'intersects',
+                //    endpoint: 'PhilaGov/Addresses/MapServer/0',
+                //    options: {
+                //        // TODO
+                //    }
+                //},
+zoningPermit: {
+        type: 'esri',
+        url: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/ArcGIS/rest/services/LI_PERMITS/FeatureServer/0',
+        options: {
+            where: function (feature) {
+                return "ADDRESSKEY = '" + feature.properties.li_address_key + "' AND PERMITTYPE LIKE 'ZP%'";
+            
+            }
+        }
+    },
+                    property: {
+      type: 'carto',
+      url: '//phl.carto.com/api/v2/sql',
+      options: {
+        q: function (feature) {
+          var accountNum = feature.properties.opa_account_num;
+
+          return "SELECT * FROM opa_properties_public WHERE parcel_number = '" + accountNum + "'";
+        },
+      },
+    },
+            };
+        
+        function fetchLayerInfo_(feature, caseType) {
+            console.log('fetch layer info', feature, caseType);
+            
+            actionStatusOn('Querying layers...');
+            
+            //var GIS_BASE_URL = '{!$Setup.GIS__c.ESRIServices__c}' + '/',
+            var queryLayerFns = {};
+                
+            // build up an array of query fns for each layer
+            _.forOwn(QUERY_LAYERS, function (queryLayerDef, queryLayerName) {
+                //console.log('query layer', queryLayerName, queryLayerDef);
+                
+                var queryLayerFn = function (callback) {
+                    //var endpoint = queryLayerDef.endpoint,
+                    var url = queryLayerDef.url,
+                        type = queryLayerDef.type,
+                        options = queryLayerDef.options;
+                    
+                    switch(type) {
+                        case 'esri':                            
+                            // form params
+                            var params = {
+                                    outFields: '*',
+                                    returnGeometry: 'true',
+                                    f: 'json'
+                                },
+                                whereFn = options.where,
+                                where = whereFn(feature);
+                            params.where = where;
+                            
+                            $$.ajax({
+                                url: url + '/query',
+                                data: params,
+                                success: function (dataStr) {
+                                    // parse json string
+                                    var data = $$.parseJSON(dataStr);
+                                    
+                                    // check for error
+                                    if (data.error) {
+                                        console.log('did get error for where query', queryLayerName, data);
+                                        
+                                        callback(true);
+                                        
+                                        return;
+                                    }
+                                    
+                                    //console.log('did get data for where query', queryLayerName, data, url);
+                                    
+                                    // unpack attributes object
+                                    var features = data.features,
+                                        feature = Array.isArray(features) && features.length > 0 ? features[0] : null,
+                                        result;
+                                    
+                                    if (feature)  {
+                                        result = feature.attributes;
+                                        
+                                        console.log('set', queryLayerName, result); 
+                                    }
+                                    
+                                    callback(null, result);
+                                },
+                                error: function () {
+                                    console.log('did get esri error');
+                                    
+                                    callback(queryLayerName + ' had error');
+                                }
+                            });
+                            
+                            break;
+                        
+                        case 'carto':
+                            var qFn = options.q,
+                                q = qFn(feature),
+                                params = {
+                                    q: q,
+                                };
+                                
+                            $$.ajax({
+                                url: url,
+                                data: params,
+                                success: function (data) {
+                                    // unpack attributes
+                                    var rows = data.rows,
+                                        row = Array.isArray(rows) && rows.length > 0 ? rows[0] : null;
+                                
+                                    callback(null, row);
+                                },
+                                error: function () {
+                                    console.warn('did get carto error');
+                                    
+                                    callback(queryLayerName + ' had error');
+                                },
+                            });
+                            
+                            break;
+                        
+                        default:
+                            console.warn('unhandled query type: ' + type);
+                            callback("unhandled query type '" + type + "'", null);
+                            
+                            break;
+                    }                   
+                };
+                
+                queryLayerFns[queryLayerName] = queryLayerFn;
+            });
+                        
+            // execute query fns in parallel
+            async.parallel(
+                queryLayerFns,
+                // then do this
+                function (err, results) {
+                    actionStatusOff();
+                    
+                    // check for an error
+                    if (err) {
+                        console.log('async parallel error:', err);
+                        return;
+                    }
+                    
+                    console.log('async parallel finished', results);
+                    
+                    saveGeodata(feature, results);
+                }
+            );
+        }
+        
+        function saveGeodata(feature, layerInfo) {
+            console.log('save geodata', feature, layerInfo);
+            
+            // pass data back to parent window
+            var geodata = createGeodataObject(feature, layerInfo);
+            console.log('geodata', geodata);
+            
+            // DEBUG: if window.opener isn't defined, we're probably just testing this
+            // from the X311GISMap page directly. don't try to call saveGeodata on the parent.
+            if (!window.opener) {
+                console.warn('window.opener not defined. geodata will not be saved.');
+                return;
+            }
+            
+            window.opener.saveGeodata(geodata);
+        }
+        
+        // takes an ais feature and formats it as a "geodata" object which the parent window can understand.
+        function createGeodataObject(feature, layerInfo) {
+            console.log('create geodata object', feature, layerInfo);
+                        
+            var props = feature.properties,
+                coords = feature.geometry.coordinates,
+                coordsStatePlane = proj4('EPSG:2272', coords),
+                // parent page checks for the token `Intersection`, so camel case this
+                matchType = toCamelCase(feature.ais_feature_type),
+                addressKey = (props.li_address_key || '').split('|')[0];
+            
+            // we're now getting the L&I district from AIS, so update layer info
+            layerInfo.district = props.li_district;
+            
+            var geodata = {
+                    gisData: {
+                        standardizedAddress: props.street_address,
+                        matchType: matchType,
+                        // address keys are pipe-delimited, so take the first one
+                        addressKey: addressKey,
+                        // REVIEW is it ok to use the opa address here?
+                        liAddress: props.opa_address,
+                        zoning: props.zoning,
+                    },
+                    
+                    // this doesn't seem to be used
+                    description: null,
+                    
+                    // this doesn't seem to be used
+                    featureData: null,
+                    
+                    // TODO populate this based on if there's a related case
+                    parentId: null,
+                    // this seems to be related to the parent case
+                    label: null,
+                    
+                    x: coords[0],
+                    y: coords[1],
+                    x2272: coordsStatePlane[0],
+                    y2272: coordsStatePlane[1],
+                    
+                    layerInfo: layerInfo,
+                    
+                    // this seems to be where service area values go
+                    attributes: {
+                        SA_STREETS_ZipCode: props.zip_code,
+                        SA_PHILLYRISING: props.philly_rising_area,
+                        SA_POLICE_District: props.police_district,
+                        SA_STREETS_Rubbish: props.rubbish_recycle_day,
+                        SA_PLANNING_2016Councilmanic: props.council_district_2016,
+                        SA_STREETS_Sanitation_Districts: props.sanitation_district,
+                    }
+                }; 
+            
+            return geodata;
+        }
+        
+        function fetchRelated(recordTypeId, x, y, callback) {
+            console.log('fetch related');
+            
+            X311GISConnectorClr.QueryByRadius(recordTypeId, x, y, 500, didFetchRelated); 
+        }
+
+        function didFetchRelated(results, event) {
+            console.log('did fetch related', results, event);
+            
+            // put markers on map
+            MAP.addRelatedMarkers(results);
+            
+            // TODO populate list on right-hand side
+        }
+    </script>
+
+    <c:gisMapLeaflet />
+</apex:page>

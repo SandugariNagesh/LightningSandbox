@@ -1,0 +1,224 @@
+<apex:component >
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css" />
+    
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #force .alert {
+            padding: 0;
+        }
+        .feedback {
+            float: right;
+        }
+        #map-container: {
+        	/*height: 100%;
+        	width: 100%;*/
+        	position: absolute:
+        	top: 0;
+        	bottom: 0;
+        	right: 0;
+        	left: 0;
+        }
+        /*#map {
+            width:78%;
+            border-right:1px solid #c9c9c9;
+            float: left;
+            height: 600px;
+        }*/
+        .sidePanel{
+            width:21%;
+            float:left;
+        
+        }
+        /*#container {
+            width:100%;
+            height: 98%;
+        }*/
+        
+        #featureLayers {
+            border-bottom:1px solid #c9c9c9;
+            height: 400px;
+        }
+        
+        #relatedItems, #featureLayers {
+            padding-top:20px;
+        }
+        #relatedItems {
+            height:500px;
+            overflow:auto;
+        
+        }
+        .action-status-wrapper {
+            margin-left: 38%;
+            margin-right: auto;
+            position: absolute;
+            top: 50%;
+            width: 110px;
+        }
+        .infotable {
+            width: 96%;
+            margin: 6px;
+        }
+        .infotableproperty {
+            min-width: 120px;
+            max-width: 160px;
+            padding-right: 12px;
+            padding-top: 6px;
+            text-transform: capitalize;
+        }
+    </style>
+    
+    <div id="container">
+    	<div id="map-container">
+    		<div id="map">
+            	<c:ActionStatus />  
+        	</div>
+    	</div>
+        
+        <!--<div id="force" class="sidePanel">
+            
+            <div id="featureLayers">
+                
+            </div>
+            <div id="relatedItems"></div>
+        </div>
+        -->
+    </div>
+    
+    <!-- JavaScript -->
+    
+    <script src="//unpkg.com/leaflet@1.1.0/dist/leaflet.js"></script>
+    <script src="//unpkg.com/esri-leaflet@2.0.8"></script>
+    
+    <script>
+    	GIS.map = (function () {
+    		var map,
+    			geocodeMarker,
+    			relatedMarkers;
+    		
+    		return {
+    			init: function () {
+    				var MAP_OPTIONS = {
+    						// center over city hall
+    						center: [39.952388, -75.1658127],
+    						minZoom: 11,
+    						zoom: 15,
+    					};
+    			
+    				// create map
+    				map = L.map('map', MAP_OPTIONS);
+		            
+		            // move zoom control to bottom-right, a la google
+		          	map.zoomControl.setPosition('bottomright');
+		          	
+		          	map.attributionControl.addAttribution('City of Philadelphia GIS Services Group');
+		            
+		            // DEV
+		            map.on('zoomend', function (e) {
+		            	console.log('zoomend', e.target.getZoom());
+		            });
+		            
+		            // add gsg city basemap with labels
+		            // REVIEW add labels separately?
+		            L.esri.tiledMapLayer({
+		            	url: '//tiles.arcgis.com/tiles/fLeGjb7u4uXqeF9q/arcgis/rest/services/CityBasemap_Slash/MapServer'
+		            }).addTo(map);
+    			},
+    			
+    			zoomTo: function (x, y, level) {
+    				// default zoom level to 15
+    				level = level || 15;
+    				
+    				map.setView([y, x], level);
+    			},
+    			
+    			colorMarker: function (lat, lng, color) {
+    				var AVAILABLE_COLORS = [
+    					'blue',
+    					'red',
+    					'green',
+    					'orange',
+    					'yellow',
+    					'violet',
+    					'grey',
+    					'black',
+    				];
+    				
+    				// lower case, just in case
+    				color = color.toLowerCase();
+    				
+    				if (!AVAILABLE_COLORS.includes(color)) {
+    					throw 'Leaflet marker not available for color: ' + color;
+    				}
+    				
+    				var iconUrl = '//cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-' + color + '.png',
+    					icon = new L.Icon({
+	    					iconUrl: iconUrl,
+	    					shadowUrl: '//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+							iconSize: [25, 41],
+							iconAnchor: [12, 41],
+							popupAnchor: [1, -34],
+							shadowSize: [41, 41],
+	    				}),
+	    				marker = new L.marker([lat, lng], {icon: icon}); 
+	    			
+	    			console.log('marker', marker);
+	    			
+	    			return marker;
+    			},
+    			
+    			removeMarkers: function () {
+    				if (geocodeMarker) {
+    					map.removeLayer(geocodeMarker);
+    				} 
+    				
+    				_.forEach(relatedMarkers, function (relatedMarker) {
+    					map.removeLayer(relatedMarker);
+    				});
+    				
+    				geocodeMarker = null;
+    				relatedMarkers = [];
+    			},
+    			
+    			addGeocodeMarker: function (x, y, address) {
+    				console.log('add geocode marker', x, y);
+    				
+    				MAP.removeMarkers();
+    				
+    				//geocodeMarker = L.marker([y, x]);
+    				
+    				geocodeMarker = this.colorMarker(y, x, 'yellow');
+    				
+    				geocodeMarker.bindPopup('<strong>' + address + '</strong>');    				
+    				
+    				geocodeMarker.addTo(map);
+    				
+    				geocodeMarker.openPopup();
+    			},
+    			
+    			addRelatedMarkers: function (relateds) {
+    				console.log('add related markers', relateds);
+    				
+    				_.forEach(relateds, function (related) {
+    					//console.log('related', related);
+    					
+    					var x = related.x,
+    						y = related.y,
+    						marker = this.colorMarker(y, x, 'blue');
+    					
+    					marker.addTo(map);
+    					
+    					relatedMarkers.push(marker);
+    				}.bind(this));
+    			},
+    		};
+    	})();
+
+        // call initMap on dom ready
+        $$(MAP.init);
+    </script>
+</apex:component>

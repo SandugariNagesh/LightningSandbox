@@ -1,0 +1,26 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="4"><span style="background: white;">A
+complaint has been submitted for an illegal vendor, please assign an inspector.</span>&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="4"><br>
+<br>
+<span style="background:white">Hansen Request ID #:&nbsp;</span></font><font style="font-size: 12pt;">&nbsp;</font><font face="Times New Roman, Times, serif" size="4">{!Case.Hansen_Request_ID__c}</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="4"><font face="arial"><span style="font-size: 12pt;"><br></span></font></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="4"><font face="arial"><span style="font-size: 12pt;">Address/Intersection:
+&nbsp;</span></font></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">{!Case.Street__c}<br></font><font face="arial">{!Case.L_I_Address__c}</font><br><font face="arial" style="color: rgb(0, 0, 0); font-family: &quot;Times New Roman&quot;, Times, serif; font-size: large;"><span style="font-size: 12pt;"><br>
+</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="arial" style="font-family: &quot;Times New Roman&quot;, Times, serif; font-size: large;"><span style="font-size: 12pt;">Subject:&nbsp;<o:p></o:p></span></font><font face="Times New Roman, Times, serif">{!Case.Service_Request_Type__c}</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font size="4"><font face="Times New Roman, Times, serif">{!Case.Request_Type__c}</font></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font size="4"><font face="Times New Roman, Times, serif"><br>{!Case.Description}<br>
+<br><font face="arial"><span style="font-size: 12pt;">
+Click on the respective link to access the case&nbsp;</span></font><br><font face="arial"><span style="font-size: 12pt;">
+Internal Users:&nbsp;</span></font><a href="https://philly311.my.salesforce.com/50016000012odGf" target="_blank" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="color: blue;">https://philly311.my.salesforce.com/50016000012odGf</span></a><font face="arial"><span style="font-size: 12pt;">&nbsp;</span></font><br><font face="arial"><span style="font-size: 12pt;">
+Partner Users:&nbsp;</span></font><a href="https://philly.force.com/internal/50016000012odGf" target="_blank" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="color: blue;">https://philly.force.com/internal/50016000012odGf</span></a><font face="arial"><span style="font-size: 12pt;">&nbsp;</span></font><br>
+<br><font face="arial"><span style="font-size: 12pt;">
+Regards,&nbsp;</span></font><br>
+<br><font face="arial"><span style="font-size: 12pt;">
+Philly311&nbsp;</span></font></font><font face="Times New Roman, Times, serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br>
+Customer Support</font></font><font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 10pt;"><o:p></o:p></font></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,25 @@
+.THIS .errMsg{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: red;
+    font-weight: 700;
+    font-size: 20px;
+}
+.THIS .slds-file-selector__text {
+    color: rgb(19, 95, 144); 
+}
+
+/*.THIS .slds-file-selector__dropzone {
+    border : 0px;
+}
+.THIS .slds-file-selector__dropzone .slds-file-selector__button .slds-button__icon{ 
+    display: none;
+}*/
+.THIS .slds-file-selector__dropzone .slds-file-selector__button{
+    font-size: 0;
+}
+.THIS .slds-file-selector__dropzone .slds-file-selector__button:After{
+   content: 'Upload Picture';
+    font-size: 15px;
+    color:  rgb(19, 95, 144); 
+}

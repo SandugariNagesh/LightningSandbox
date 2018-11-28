@@ -1,0 +1,22 @@
+*** NEW CASE ASSIGNMENT NOTIFICATION *** 
+
+The following case has been assigned to you. Please take appropriate action.
+
+User: {!Case.User__c} 
+ 
+Case #: {!Case.CaseNumber} 
+
+Issue Reported: {!Case.Subject} 
+
+Description: {!Case.Description} 
+
+Click on the link to access the case: {!Case.Link}
+
+
+Regards,
+
+Philly311
+Customer Support
+
+Mission: 
+Is to provide direct access to city government information and services while delivering world-class customer service.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Office of Homeless Services</name>
+    <style>freeForm</style>
+    <subject>SAVE THE DATE: November 28, 2017 - Office of Homeless Services Community Training</subject>
+    <textOnly>Dear Community Partners,
+
+
+Please Click Here to fill out a brief questionnaire regarding your attendance to our next community meeting.
+
+
+
+We look forward to your participation.</textOnly>
+    <type>html</type>
+</EmailTemplate>

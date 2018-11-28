@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Conrail</name>
+    <style>formalLetter</style>
+    <subject>Conrail Clean-up</subject>
+    <textOnly>Good day team! Unfortunately, we will not begin Conrail clean up Monday. Conrail continues to iron out a few issues with their fencing contractors. Thank you for your patience and ongoing commitment to improve our Barrio.
+
+
+We are continuing our community beautification efforts as planned and are currently at Hope park and 2900 Ella street - cleaning lots, painting clean &amp; sealed homes, and cleaning streets. We have over 60 volunteers from the Salvation Army and many residents and children have joined our efforts and Outreach teams are out and about engaging folks for services.
+
+
+We will keep you abreast of progress.
+
+
+
+Thank you,
+
+
+
+Joanna Otero-Cruz</textOnly>
+    <type>html</type>
+</EmailTemplate>

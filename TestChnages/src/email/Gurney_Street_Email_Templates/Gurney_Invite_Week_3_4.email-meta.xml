@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Gurney Invite Week 3 &amp; 4</name>
+    <style>freeForm</style>
+    <subject>Please Join Our Gurney Campaign</subject>
+    <textOnly>Thank you for submitting a service request in the  19133 &amp; 19134  area. We appreciate your active participation and enthusiasm in working together to eradicate the blight, vandalism, and social ills affecting the quality of life in our community.
+
+
+
+The Community Services division of the Managing Director’s Office oversees a number of outward-facing programs that provide services directly to the public. These offices and programs focus on enhancing quality of life, improving resident engagement, with their communities and their city government. One of the most important areas to impact for Mayor Jim Kenney when he went into office was West Kensington/Fairhill area of Philadelphia, which surrounds Gurney Street’s train tracks. This has made this area a great priority in regards to resources, and programs. We aim to help the overwhelming number of residents below the poverty line, clean up the streets, as well as help the prevailing epidemic of heroin and opiate abuse. Our cabinet also aims to lessen the crime statistics in this area stemming from this drug issue, and to give power back to the community. This project is called the “Gurney Street” project.
+
+
+
+Under the “Gurney Street” project, our Cabinet also works with the project “El Barrio es Nuestro.” This part of Gurney Street project focuses on the community’s engagement. While we can clean up neighborhoods, and put more police on patrol, the heart of fixing this issue is the residents. The best method to addressing the drug and violence issue prevailing in these neighborhoods involves working with the community and giving them a voice in their neighborhood. “El Barrio es Nuestro” hosts Town Hall meetings with city departments, members of the community, religious and non-profit agencies to address the issues that are of concern to these residents. In these meetings community members let us know what exactly what they want to do, and other agencies including ourselves help give them the resources to make it happen. Agencies also provide free trainings to let community members know about programs.
+
+
+
+To sign-up for Gurney Street emails, please click here .</textOnly>
+    <type>html</type>
+</EmailTemplate>

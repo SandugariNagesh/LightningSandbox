@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email template is automated (workflow) to be sent along illegal vendor requests to L&amp;I to make sure the case is assigned.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Illegal Vendor Service Request</name>
+    <style>freeForm</style>
+    <subject>A {!Case.Service_Request_Type__c} {!Case.Request_Type__c}  {!Case.Hansen_Request_ID__c} at {!Case.L_I_Address__c}</subject>
+    <textOnly>A complaint has been submitted for an illegal vendor, please assign an inspector. 
+
+
+Hansen Request ID #:  {!Case.Hansen_Request_ID__c}
+
+Address/Intersection:  
+{!Case.Street__c}
+{!Case.L_I_Address__c}
+
+Subject: {!Case.Service_Request_Type__c}
+{!Case.Request_Type__c}
+
+{!Case.Description}
+
+Click on the respective link to access the case:
+
+Internal Users: https://philly311.my.salesforce.com/50016000012odGf 
+Partner Users: https://philly.force.com/internal/50016000012odGf 
+
+Regards, 
+
+Philly311 
+Customer Support</textOnly>
+    <type>html</type>
+</EmailTemplate>

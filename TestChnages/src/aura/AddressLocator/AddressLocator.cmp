@@ -1,0 +1,25 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+   <ltng:require scripts="/resource/lightJS/jquery-3.3.1.min.js" />
+    <ltng:require scripts="/resource/lightJS/esri-leaflet2.1.4_light.js" />
+ 
+
+
+  <!-- JavaScript: Local --> 
+    <ltng:require scripts="{!$Resource.Jquery_light}" />
+  
+    <ltng:require scripts="{!$Resource.GisConfigJs_light}" />
+	  <ltng:require scripts="{!$Resource.GisAppJs_light}"  />
+    <ltng:require scripts="{!$Resource.GISmap_light}" />
+
+    <aura:attribute name="Address" type="String" default="1234 market st"/>
+    <div id="container">
+      <div id="search-input-container">	
+            <lightning:input type="String" class="form-control" aura:id="search-input"
+                             value="{!v.Address}" 
+                             placeholder="Enter an address to search for"
+                             onchange="{!c.locateAddress}" />
+          </div>
+        <lightning:button variant="brand" label="Locate" class="search-button" />
+        <div id="map"></div>
+  </div>
+</aura:component>

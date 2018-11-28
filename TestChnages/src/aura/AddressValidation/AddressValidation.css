@@ -1,0 +1,18 @@
+.THIS {
+}
+
+.THIS.displayMapIFrame{
+    display:block;
+}
+
+.THIS.hideMapIFrame{
+    display:none;
+}
+
+.THIS.invalidAddressMsg{
+    color : red;
+    font-size: x-large;
+}
+.THIS .multiAdd{
+    display:none;
+}

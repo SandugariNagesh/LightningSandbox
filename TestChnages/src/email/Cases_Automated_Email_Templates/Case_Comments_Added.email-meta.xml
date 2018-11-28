@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for New Case Comments Added to Case.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Philly311_Logo_Letter_Head</letterhead>
+    <name>Case Comments Added</name>
+    <style>freeForm</style>
+    <subject>Case Comment Has Been Added To Your Case# {!Case.CaseNumber}, {!Case.Street__c}</subject>
+    <textOnly>Dear Customer,
+
+Thank you for submitting your request. Please be advised that Case # {!Case.CaseNumber} regarding &quot;{!Case.RecordType}&quot; located at {!Case.Street__c} has been Closed by the &quot;{!Case.Department__c}&quot;.
+
+
+The {!Case.Department__c} has left a comment on your case: &quot;{!Case.Last_Case_Comment}&quot;.
+
+You may track the status of your request using the case number provided via our website at http://www.phila.gov/311/pages/default.aspx, or reply to this email, dial 3-1-1, or for outside of Philadelphia please dial 215-686-8686. Please note updates to the website may take up to 48 hours to appear.
+
+Regards,
+Philly311 Customer Support
+
+Take 30 seconds to let us know how we are doing: SURVEY
+
+
+Download our Mobile Application here:
+IOS: https://itunes.apple.com/us/app/philly-311/id533292779?mt=8 
+Android https: //play.google.com/store/apps/details?id=com.publicstuff.philadelphia&amp;hl=en 
+
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

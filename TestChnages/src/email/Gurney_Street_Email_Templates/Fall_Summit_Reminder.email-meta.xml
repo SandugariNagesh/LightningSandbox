@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>Fall Summit Reminder</name>
+    <style>freeForm</style>
+    <subject>Reminder: Fall Service Summit - December 9, 2017</subject>
+    <textOnly>Dear Community Partners,
+
+
+Please click on the link below and fill out a brief questionnaire regarding your attendance to our next community meeting.
+
+Fall Service Summit
+
+Feria de Recursos de la Ciudad
+
+
+
+We look forward to your participation.</textOnly>
+    <type>html</type>
+</EmailTemplate>

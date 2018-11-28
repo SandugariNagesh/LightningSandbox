@@ -1,0 +1,11 @@
+****Unsafe Condition Case Alert**** 
+
+Based on the nature of your request case # {!Case.CaseNumber} for {!Case.Service_Request_Type__c} at {!Case.Street__c} has been updated to a Unsafe situation. For additional information related to this case you may contact us using the case number provided by dialing 3-1-1 or 215-686-8686 or via email at Philly311@phila.gov. 
+
+Please note we are undergoing system upgrades and the above case number is not currently available for tracking online. We apologize for any inconvenience. 
+
+
+Regards, 
+
+{!Organization.Name} 
+Customer Support

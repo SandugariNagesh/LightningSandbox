@@ -1,0 +1,7 @@
+Description: 
+{!Feedback__c.Description__c} 
+
+URL: 
+{!Feedback__c.Long_url__c} 
+
+View {!Feedback__c.Name} in Salesforce: {!Feedback__c.Link}

@@ -1,0 +1,13 @@
+<apex:page applyHtmlTag="false" applyBodyTag="false" showHeader="false"> 
+
+<!--<apex:page cache="true" expires="60" sidebar="false" showHeader="false"  > -->
+<html>
+<head>
+<meta name="google-site-verification" content="6gVRigIo4j09qSdIjONNEogH1YCIxxxfFITHPbZWnqM" />
+<meta name="google-site-verification" content="google9e265665c1da04cf" />
+<!--<meta name="google-site-verification" content="cIF3BaJIBt7fg-lAsZDPDTAZbop8ItAdYdoKHtD01HI" /> -->
+</head> 
+<body>
+</body>
+</html>
+</apex:page>

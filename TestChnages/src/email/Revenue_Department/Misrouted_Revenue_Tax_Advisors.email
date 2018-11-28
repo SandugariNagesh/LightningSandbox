@@ -1,0 +1,71 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif" style=""><o:p style="">&nbsp;</o:p>Dear&nbsp;</font><b style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, Times, serif; background-color: rgb(255, 255, 255);">{!Contact.Name},</b></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Thank you for contacting The Philadelphia Department of
+Revenue. We received your email, and have sent it to the <b style="mso-bidi-font-weight:
+normal">Revenue Tax Advisors</b> at <a href="mailto:revenuetaxadvisers@phila.gov">revenuetaxadvisors@phila.gov</a> for
+review. This team will be able to assist you. If you don’t receive a response
+within 3 business days, please follow up with the Revenue Tax Advisers at the
+email mentioned above.<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt;"><font face="Times New Roman, Times, serif" style="font-size: medium;"><br></font></p><p class="MsoNormal" style="font-size: 12pt;"><font face="Times New Roman, Times, serif" style="font-size: medium;">Subject:&nbsp;</font><font face="Times New Roman, Times, serif" style="font-size: medium;">{!Case.Subject}</font></p><p class="MsoNormal"><font face="Times New Roman, Times, serif">Description:&nbsp;</font><font face="Times New Roman, Times, serif">{!Case.Description}</font></p>
+
+<p class="MsoNormal" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Thank you,<o:p></o:p></font></p>
+
+<p class="MsoNormal" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif"><span style="mso-no-proof:yes"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="Picture_x0020_6" o:spid="_x0000_i1025" type="#_x0000_t75"
+ style='width:115.5pt;height:22.5pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="file:///C:/Users/RAJU~1.KON/AppData/Local/Temp/msohtmlclip1/01/clip_image001.jpg"
+  o:title=""/>
+</v:shape><![endif]--><!--[if !vml]--><img border="0" width="154" height="30" src="file:///C:/Users/RAJU~1.KON/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" v:shapes="Picture_x0020_6"><!--[endif]--></span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 1pt;"><font face="Times New Roman, Times, serif"><span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-no-proof:yes">Follow
+us on: <b style="mso-bidi-font-weight:normal"><span style="mso-spacerun:yes">&nbsp;</span></b></span><a href="http://www.facebook.com/philarevenue"><span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-no-proof:yes">Facebook</span></a><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+color:#1F497D;mso-no-proof:yes">&nbsp;&nbsp;<span style="mso-spacerun:yes">&nbsp;
+</span></span><a href="https://twitter.com/PhilaRevenue"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+mso-bidi-font-weight:bold;mso-no-proof:yes">Twitter</span></a><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+mso-no-proof:yes"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span></span><a href="https://www.youtube.com/channel/UCXwGfs901HF7nAZyR3NTOsw"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+mso-no-proof:yes">YouTube</span></a><b style="mso-bidi-font-weight:normal"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+mso-no-proof:yes"><o:p></o:p></span></b></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 1pt;"><font face="Times New Roman, Times, serif">Let us know how we’re doing! <a href="https://www.surveymonkey.com/r/6SF5W38">Take our 30 second survey</a><o:p></o:p></font></p>
+
+<p class="MsoNormal" style=""><span style="line-height: 107%;"><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">This email may contain confidential and/or privileged
+information.&nbsp; If you are not the intended recipient, please notify the
+sender and delete this e-mail immediately.&nbsp; Any unauthorized copying,
+disclosure or distribution of material in this e-mail is strictly forbidden.<o:p></o:p></font></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif"><br></font></p><p class="MsoNormal" style=""><span style="font-family: &quot;Times New Roman&quot;, Times, serif; font-size: 16px; background-color: rgb(255, 255, 255);">{!Case.Thread_Id}</span></p>
+
+<p class="MsoNormal" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style=""><span style="line-height: 107%;"><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style=""><o:p style=""><font face="Times New Roman, Times, serif" style="">&nbsp;</font></o:p></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for Case Status Has Been Changed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Philly311_Logo_Letter_Head</letterhead>
+    <name>Case Status Change Email Alert</name>
+    <style>freeForm</style>
+    <subject>{!Organization.Name} 311 Case #{!Case.CaseNumber} Status Has Been Changed</subject>
+    <textOnly>Dear Customer,
+
+Thank you for submitting your request through the City of Philadelphia&apos;s 311 Contact Center. A case has been created for {!Case.Service_Request_Type__c} at {!Case.Street__c} and the Service Level Agreement is: {!Case.SLA_Number__c} business days. The assigned Case # is {!Case.CaseNumber}. Your request will be forwarded to the appropriate Department.
+
+You may track the status of your request using the case number provided via our website at http://www.phila.gov/311/pages/default.aspx, or reply to this email, dial 3-1-1, or for outside of Philadelphia please dial 215-686-8686. Please note updates to the website may take up to 48 hours to appear.
+
+Regards,
+
+Philly311 Customer Support
+
+Rate Us From Here:
+
+Rate Us From Here: 
+http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id} 
+
+Download our Mobile Application here: 
+
+IOS: https://itunes.apple.com/us/app/philly-311/id533292779?mt=8 
+Android https: //play.google.com/store/apps/details?id=com.publicstuff.philadelphia&amp;hl=en 
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

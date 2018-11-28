@@ -1,0 +1,10 @@
+Dear {!Contact.FirstName}, 
+
+Your {!Organization.Name} Customer Portal login and password information is below. 
+
+[INSERT LOG IN AND PASSWORD] 
+
+Regards, 
+
+{!Organization.Name} 
+Customer Support

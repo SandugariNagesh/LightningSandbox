@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Complaint - case was closed and must be submitted as a redress</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Customer Complaint:1st Response Redress</name>
+    <style>freeForm</style>
+    <subject>Philly 311 Reply to Your Inquiry Related to  {!Case.RecordType}, Case #{!Case.CaseNumber}</subject>
+    <textOnly>Dear Customer,
+
+Thank you for contacting the City of Philadelphia’s 311 Contact Center. Please accept our apologies that the matter you reported was not resolved in a satisfactory manner. We have requested and received confirmation that the {!Target_User.Department} will reopen your case.
+
+The case number for this request is {!Case.CaseNumber}; regarding &quot;{!Case.RecordType}&quot;.You may track the status of your request using the reference number provided via our website at http://www.phila.gov/311,  by replying to this email or dialing 3-1-1 (outside of Philadelphia dial 215-686-8686). Please note updates to the website may take up to 48 hours to appear.
+
+We appreciate your patience.
+Regards,
+Philly311
+Customer Support
+
+Take 30 seconds to let us know how we are doing:
+http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id}
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Web/Mobile cases that need response because we closed out automatically</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Customized Response: Web/Email Case automatically closed as Service Not Needed</name>
+    <style>freeForm</style>
+    <subject>Philly 311 Reply to Your Inquiry Related to Case # {!Case.CaseNumber} - Additional Information Needed</subject>
+    <textOnly>Dear Customer,
+
+Thank you for contacting the City of Philadelphia’s 311 Contact Center. Your case was closed systematically and we need additional information in order to follow up on your request. Please call Philly311 if you are still in need of service.
+
+[TYPE CUSTOMIZED RESPONSE HERE]
+
+Once received the request will be reviewed and you will receive an update. Case number{!Case.CaseNumber} has been assigned to this request for your reference and should be used when responding to this email or following up on your case. We look forward to hearing from you so that we may assist you with your inquiry or request.
+
+Regards,
+Philly311
+Customer Support
+
+Take 30 seconds to let us know how we are doing:
+http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id}
+
+
+
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

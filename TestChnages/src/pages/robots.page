@@ -1,0 +1,7 @@
+<apex:page contentType="text/plain">
+   User-Agent: *
+   Allow: /
+<!-- Replace this path with your site's actual
+     path and sitemap name. -->
+   Sitemap: https://philly.force.com/test311/s/sitemap.xml
+</apex:page>

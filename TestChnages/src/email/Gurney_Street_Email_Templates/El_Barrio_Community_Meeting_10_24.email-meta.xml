@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Template_City_Logo</letterhead>
+    <name>El Barrio Community Meeting 10/24</name>
+    <style>freeForm</style>
+    <subject>SAVE THE DATE: October 24, 2017 - El Barrio es Nuestro Community Meeting</subject>
+    <textOnly>SAVE THE DATE
+
+
+
+WHAT: El Barrio es Nuestro – Community Meeting
+
+WHEN:  Tuesday, October 24, 2017
+
+TIME: 5:30 PM – 7:00 PM
+
+LOCATION: Somerset Villas – 200 E. Somerset  Street, Philadelphia PA  19134
+
+TRAINER: DBHIDS – OFFICE OF ADDICTION SERVICES
+
+TO REGISTER:  email Damaris.Feliciano@phila.gov or Luz.paradoa@phila.gov</textOnly>
+    <type>html</type>
+</EmailTemplate>

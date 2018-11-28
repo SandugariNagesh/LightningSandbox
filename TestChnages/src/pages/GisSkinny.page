@@ -1,0 +1,7 @@
+<apex:page showHeader="false" sidebar="false">
+    <c:gisMap />
+    
+    <script>
+        window.parent.setGisApi(aGisApi);
+    </script>
+</apex:page>

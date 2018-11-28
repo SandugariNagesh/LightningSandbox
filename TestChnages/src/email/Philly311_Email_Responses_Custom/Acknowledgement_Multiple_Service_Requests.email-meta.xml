@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Acknowledgement of receipt of multiple service requests</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Email_Philly311_Logo</letterhead>
+    <name>Acknowledgement: Multiple Service Requests</name>
+    <style>freeForm</style>
+    <subject>Philly 311 Reply to Your Multiple Service Requests Dated</subject>
+    <textOnly>Dear Customer,
+
+Thank you for contacting the City of Philadelphia’s 311 Contact Center. Your requests have been forwarded to the appropriate department(s) for investigation and appropriate action.
+
+A separate case is created for each issue or location reported. You will receive a confirmation email for each case created. This will enable you to track or receive email updates related to the status of each issue or location reported.  
+
+You may track the status of each request, using the reference number provided in the confirmation email, via our website at http://www.phila.gov/311, by replying to case confirmation email or dialing 3-1-1 (outside of Philadelphia dial 215-686-8686). Please note updates to the website may take up to 48 hours to appear.
+
+Regards,
+Philly311
+Customer Support
+
+Take 30 seconds to let us know how we are doing:  http://philadelphia.force.com/survey/TakeSurvey?id=a0N1600000VnqcmEAB&amp;cId={!Contact.Id}&amp;caId={!Case.Id}
+
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

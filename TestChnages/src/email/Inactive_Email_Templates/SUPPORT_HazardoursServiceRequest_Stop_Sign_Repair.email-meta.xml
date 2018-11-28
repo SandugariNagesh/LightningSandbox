@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Hazardous Email Alert for Stop Sign Repair</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: HazardoursServiceRequest-Stop Sign Repair</name>
+    <style>none</style>
+    <subject>Hazardous Stop Sign Issue Reported at {!Case.Street__c}, Streets ID# {!Case.Streets_Request_ID__c}, Type {!Case.Issue__c}</subject>
+    <type>text</type>
+</EmailTemplate>

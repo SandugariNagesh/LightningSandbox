@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Revenue_Department_Letter_Head</letterhead>
+    <name>Revenue Escalation Closed Case Email Alert</name>
+    <style>freeForm</style>
+    <subject>Your Case #{!Case.CaseNumber} is closed.</subject>
+    <textOnly>Dear {!Contact.Name},
+
+Thank you for contacting the Department of Revenue.
+
+This email is a confirmation that {!Case.Subject} has been resolved.
+
+For your reference, your case number is the following {!Case.CaseNumber}
+
+Thank you,
+Department of Revenue
+
+
+Follow us on:  Facebook  Twitter YouTube
+
+Let us know how we’re doing! Take our 30 second survey
+
+https://www.surveymonkey.com/r/6SF5W38
+
+This email may contain confidential and/or privileged information. If you are not the intended recipient, please notify the sender and delete this e-mail immediately. Any unauthorized copying, disclosure or distribution of material in this e-mail is strictly forbidden.
+
+
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>
